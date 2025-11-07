@@ -1,0 +1,165 @@
+.header {
+  background: white;
+  border-bottom: 1px solid #e5e5e5;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.topInfo {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 20px;
+  background: #f8f9fa;
+  font-size: 12px;
+  border-bottom: 1px solid #e5e5e5;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.topInfo span {
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.topInfo span:hover {
+  color: #ff3d00;
+}
+
+.langSelect {
+  border: none;
+  background: transparent;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.mainNav {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ff3d00;
+  text-decoration: none;
+}
+
+.catalogBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 15px;
+  background: #ff3d00;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  font-size: 14px;
+}
+
+.catalogBtn:hover {
+  background: #e03500;
+}
+
+.searchBar {
+  display: flex;
+  flex: 1;
+  max-width: 600px;
+  min-width: 300px;
+}
+
+.searchBar input {
+  flex: 1;
+  padding: 12px;
+  border: 2px solid #ff3d00;
+  border-radius: 8px 0 0 8px;
+  outline: none;
+  font-size: 14px;
+}
+
+.searchBar button {
+  padding: 12px 20px;
+  background: #ff3d00;
+  color: white;
+  border: none;
+  border-radius: 0 8px 8px 0;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.userActions {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.loginBtn, .favoritesBtn, .cartBtn {
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.loginBtn:hover, .favoritesBtn:hover, .cartBtn:hover {
+  border-color: #ff3d00;
+  color: #ff3d00;
+}
+
+.categories {
+  display: flex;
+  padding: 10px 20px;
+  gap: 25px;
+  overflow-x: auto;
+  border-top: 1px solid #e5e5e5;
+  background: #fafafa;
+}
+
+.categories a {
+  white-space: nowrap;
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  padding: 5px 0;
+}
+
+.categories a:hover {
+  color: #ff3d00;
+}
+
+/* Scrollbar styles */
+.categories::-webkit-scrollbar {
+  height: 4px;
+}
+
+.categories::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.categories::-webkit-scrollbar-thumb {
+  background: #ff3d00;
+  border-radius: 2px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .mainNav {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .searchBar {
+    min-width: 100%;
+  }
+  
+  .topInfo {
+    justify-content: center;
+  }
+}
