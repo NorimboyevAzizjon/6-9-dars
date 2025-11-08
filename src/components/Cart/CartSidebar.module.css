@@ -22,7 +22,7 @@
   background: white;
   display: flex;
   flex-direction: column;
-  box-shadow: -2px 0 20px rgba(0, 0, 0, 0.15);
+  box-shadow: -2px 0 20px rgba(122, 60, 249, 0.15);
   animation: slideIn 0.3s ease;
 }
 
@@ -36,13 +36,13 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px 24px;
-  border-bottom: 1px solid var(--uzum-border);
+  border-bottom: 1px solid #E5E5E5;
   background: white;
 }
 
 .cartHeader h2 {
   margin: 0;
-  color: var(--uzum-text);
+  color: #1A1A1A;
   font-size: 20px;
   font-weight: 600;
 }
@@ -53,7 +53,7 @@
   font-size: 24px;
   cursor: pointer;
   padding: 8px;
-  color: var(--uzum-gray);
+  color: #666666;
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -64,8 +64,8 @@
 }
 
 .closeBtn:hover {
-  background: var(--uzum-light-gray);
-  color: var(--uzum-red);
+  background: #F5F0FF; /* Purple background */
+  color: #7A3CF9; /* Purple */
 }
 
 .cartItems {
@@ -76,7 +76,7 @@
 
 .emptyCart {
   text-align: center;
-  color: var(--uzum-gray);
+  color: #666666;
   font-size: 16px;
   margin-top: 60px;
   padding: 0 20px;
@@ -86,13 +86,13 @@
   display: flex;
   gap: 12px;
   padding: 16px 20px;
-  border-bottom: 1px solid var(--uzum-border);
+  border-bottom: 1px solid #E5E5E5;
   transition: background 0.2s;
   position: relative;
 }
 
 .cartItem:hover {
-  background: #fafafa;
+  background: #FAFAFA;
 }
 
 .itemImage {
@@ -100,7 +100,7 @@
   height: 80px;
   object-fit: cover;
   border-radius: 8px;
-  border: 1px solid var(--uzum-border);
+  border: 1px solid #E5E5E5;
 }
 
 .itemInfo {
@@ -114,7 +114,7 @@
   margin: 0;
   font-size: 14px;
   line-height: 1.4;
-  color: var(--uzum-text);
+  color: #1A1A1A;
   font-weight: 500;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -125,7 +125,7 @@
 
 .itemPrice {
   margin: 0;
-  color: var(--uzum-red);
+  color: #7A3CF9; /* Purple */
   font-weight: 600;
   font-size: 16px;
 }
@@ -140,7 +140,7 @@
 .quantityBtn {
   width: 32px;
   height: 32px;
-  border: 1px solid var(--uzum-border);
+  border: 1px solid #E5E5E5;
   background: white;
   border-radius: 6px;
   cursor: pointer;
@@ -153,8 +153,9 @@
 }
 
 .quantityBtn:hover {
-  border-color: var(--uzum-red);
-  color: var(--uzum-red);
+  border-color: #7A3CF9; /* Purple */
+  color: #7A3CF9; /* Purple */
+  background: #F5F0FF; /* Purple background */
 }
 
 .quantity {
@@ -162,6 +163,7 @@
   min-width: 30px;
   text-align: center;
   font-size: 14px;
+  color: #1A1A1A;
 }
 
 .removeBtn {
@@ -177,39 +179,52 @@
 
 .removeBtn:hover {
   opacity: 1;
-  background: #ffeaea;
-  color: var(--uzum-red);
+  background: #F5F0FF; /* Purple background */
+  color: #7A3CF9; /* Purple */
 }
 
+/* YURAKCHA TUGMASI */
 .favoriteBtn {
   position: absolute;
   top: 12px;
-  right: 12px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 4px;
-  font-size: 16px;
-  transition: all 0.2s;
+  right: 50px;
+  background: white;
+  border: 2px solid #E5E5E5;
   border-radius: 50%;
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  z-index: 2;
 }
 
 .favoriteBtn:hover {
-  background: #ffeaea;
-  color: var(--uzum-red);
+  background: #F5F0FF; /* Purple background */
+  border-color: #7A3CF9; /* Purple */
+  transform: scale(1.1);
 }
 
-.favoriteBtn.active {
-  color: var(--uzum-red);
+/* OQ YURAKCHA (bosilmagan) */
+.favoriteBtn:not(.favoriteActive) {
+  color: #666666;
+  background: white;
+  border-color: #E5E5E5;
+}
+
+/* PURPLE YURAKCHA (bosilgan) */
+.favoriteActive {
+  color: #7A3CF9; /* Purple */
+  background: #F5F0FF; /* Purple background */
+  border-color: #7A3CF9; /* Purple */
+  transform: scale(1.1);
 }
 
 .cartFooter {
-  border-top: 1px solid var(--uzum-border);
+  border-top: 1px solid #E5E5E5;
   padding: 20px 24px;
   background: white;
 }
@@ -220,11 +235,11 @@
   align-items: center;
   margin-bottom: 16px;
   font-size: 18px;
-  color: var(--uzum-text);
+  color: #1A1A1A;
 }
 
 .cartTotal strong {
-  color: var(--uzum-red);
+  color: #7A3CF9; /* Purple */
   font-size: 20px;
 }
 
@@ -236,40 +251,43 @@
 .clearBtn {
   flex: 1;
   padding: 14px;
-  border: 1px solid var(--uzum-border);
+  border: 1px solid #E5E5E5;
   background: white;
   border-radius: 8px;
   cursor: pointer;
   font-weight: 500;
-  color: var(--uzum-gray);
+  color: #666666;
   transition: all 0.2s;
 }
 
 .clearBtn:hover {
-  border-color: var(--uzum-red);
-  color: var(--uzum-red);
+  border-color: #7A3CF9; /* Purple */
+  color: #7A3CF9; /* Purple */
+  background: #F5F0FF; /* Purple background */
 }
 
 .checkoutBtn {
   flex: 2;
   padding: 14px;
-  background: var(--uzum-red);
+  background: #7A3CF9; /* Purple */
   color: white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
   font-size: 16px;
-  transition: background 0.2s;
+  transition: all 0.2s;
 }
 
 .checkoutBtn:hover {
-  background: var(--uzum-dark-red);
+  background: #6A2CE0; /* Dark purple */
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(122, 60, 249, 0.3);
 }
 
 /* Arzon narx kafolati badge */
 .discountBadge {
-  background: var(--uzum-green);
+  background: #00A046; /* Green */
   color: white;
   padding: 2px 6px;
   border-radius: 4px;
@@ -281,8 +299,47 @@
 /* Monthly payment info */
 .monthlyInfo {
   font-size: 12px;
-  color: var(--uzum-green);
+  color: #00A046; /* Green */
   margin-top: 4px;
+}
+
+/* Promo code section */
+.promoSection {
+  margin-bottom: 16px;
+  padding: 12px;
+  background: #F5F0FF; /* Purple background */
+  border-radius: 8px;
+  border: 1px solid rgba(122, 60, 249, 0.2);
+}
+
+.promoInput {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #E5E5E5;
+  border-radius: 6px;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.promoInput:focus {
+  border-color: #7A3CF9; /* Purple */
+  outline: none;
+}
+
+.applyPromoBtn {
+  width: 100%;
+  padding: 8px;
+  background: #7A3CF9; /* Purple */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+.applyPromoBtn:hover {
+  background: #6A2CE0; /* Dark purple */
 }
 
 /* Responsive */
@@ -307,46 +364,11 @@
   .cartFooter {
     padding: 16px 20px;
   }
+  
+  .favoriteBtn {
+    right: 45px;
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
 }
-/* ... existing code ... */
-
-/* YURAKCHA TUGMASI */
-.favoriteBtn {
-  position: absolute;
-  top: 12px;
-  right: 50px;
-  background: white;
-  border: 2px solid var(--uzum-border);
-  border-radius: 50%;
-  width: 32px;
-  height: 32px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  transition: all 0.3s ease;
-}
-
-.favoriteBtn:hover {
-  background: #fff5f5;
-  border-color: var(--uzum-red);
-  transform: scale(1.1);
-}
-
-/* OQ YURAKCHA (bosilmagan) */
-.favoriteBtn:not(.favoriteActive) {
-  color: #666;
-  background: white;
-  border-color: var(--uzum-border);
-}
-
-/* QIZIL YURAKCHA (bosilgan) */
-.favoriteActive {
-  color: var(--uzum-red);
-  background: #fff5f5;
-  border-color: var(--uzum-red);
-  transform: scale(1.1);
-}
-
-/* ... rest of existing code ... */

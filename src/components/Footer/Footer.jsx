@@ -38,6 +38,7 @@ const Footer = () => {
           </div>
           <div className={styles.socialLinks}>
             <span>Uzum ijtimoiy tarmoqlarda</span>
+            
           </div>
         </div>
       </div>

@@ -26,6 +26,7 @@
   overflow: hidden;
   animation: slideUp 0.3s ease;
   position: relative; /* Modal content uchun */
+  box-shadow: 0 20px 40px rgba(122, 60, 249, 0.15);
 }
 
 @keyframes slideUp {
@@ -44,12 +45,12 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px 24px;
-  border-bottom: 1px solid var(--uzum-border);
+  border-bottom: 1px solid #E5E5E5;
 }
 
 .modalHeader h2 {
   margin: 0;
-  color: var(--uzum-text);
+  color: #1A1A1A;
   font-size: 20px;
   font-weight: 600;
 }
@@ -60,7 +61,7 @@
   font-size: 24px;
   cursor: pointer;
   padding: 8px;
-  color: var(--uzum-gray);
+  color: #666666;
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -72,8 +73,8 @@
 }
 
 .closeBtn:hover {
-  background: var(--uzum-light-gray);
-  color: var(--uzum-red);
+  background: #F5F0FF; /* Purple background */
+  color: #7A3CF9; /* Purple */
 }
 
 .modalBody {
@@ -83,7 +84,7 @@
 .label {
   display: block;
   margin-bottom: 8px;
-  color: var(--uzum-text);
+  color: #1A1A1A;
   font-weight: 500;
   font-size: 14px;
 }
@@ -91,7 +92,7 @@
 .phoneInputWrapper {
   display: flex;
   align-items: center;
-  border: 2px solid var(--uzum-border);
+  border: 2px solid #E5E5E5;
   border-radius: 8px;
   overflow: hidden;
   transition: border-color 0.2s;
@@ -99,15 +100,15 @@
 }
 
 .phoneInputWrapper:focus-within {
-  border-color: var(--uzum-red);
+  border-color: #7A3CF9; /* Purple */
 }
 
 .prefix {
   padding: 12px 16px;
-  background: var(--uzum-light-gray);
-  color: var(--uzum-gray);
+  background: #F8F8F8;
+  color: #666666;
   font-weight: 500;
-  border-right: 1px solid var(--uzum-border);
+  border-right: 1px solid #E5E5E5;
 }
 
 .phoneInput {
@@ -122,7 +123,7 @@
 .codeInput {
   width: 100%;
   padding: 12px 16px;
-  border: 2px solid var(--uzum-border);
+  border: 2px solid #E5E5E5;
   border-radius: 8px;
   font-size: 18px;
   text-align: center;
@@ -133,12 +134,12 @@
 }
 
 .codeInput:focus {
-  border-color: var(--uzum-red);
+  border-color: #7A3CF9; /* Purple */
 }
 
 .helperText {
   margin: 0 0 20px 0;
-  color: var(--uzum-gray);
+  color: #666666;
   font-size: 12px;
   line-height: 1.4;
 }
@@ -146,24 +147,28 @@
 .getCodeBtn, .loginBtn {
   width: 100%;
   padding: 14px;
-  background: var(--uzum-red);
+  background: #7A3CF9; /* Purple */
   color: white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
   font-size: 16px;
-  transition: background 0.2s;
+  transition: all 0.2s;
 }
 
 .getCodeBtn:hover:not(:disabled), .loginBtn:hover:not(:disabled) {
-  background: var(--uzum-dark-red);
+  background: #6A2CE0; /* Dark purple */
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(122, 60, 249, 0.3);
 }
 
 .getCodeBtn:disabled, .loginBtn:disabled {
-  background: var(--uzum-gray);
+  background: #666666;
   cursor: not-allowed;
   opacity: 0.7;
+  transform: none;
+  box-shadow: none;
 }
 
 .codeHeader {
@@ -179,27 +184,27 @@
   font-size: 20px;
   cursor: pointer;
   padding: 4px;
-  color: var(--uzum-gray);
+  color: #666666;
   border-radius: 4px;
   transition: all 0.2s;
 }
 
 .backBtn:hover {
-  background: var(--uzum-light-gray);
-  color: var(--uzum-text);
+  background: #F5F0FF; /* Purple background */
+  color: #7A3CF9; /* Purple */
 }
 
 .codeHeader span {
   font-weight: 600;
-  color: var(--uzum-text);
+  color: #1A1A1A;
 }
 
 .resendBtn {
   width: 100%;
   padding: 12px;
   background: none;
-  color: var(--uzum-red);
-  border: 1px solid var(--uzum-red);
+  color: #7A3CF9; /* Purple */
+  border: 1px solid #7A3CF9; /* Purple */
   border-radius: 8px;
   cursor: pointer;
   font-weight: 500;
@@ -209,8 +214,37 @@
 }
 
 .resendBtn:hover {
-  background: var(--uzum-red);
+  background: #7A3CF9; /* Purple */
   color: white;
+  transform: translateY(-1px);
+}
+
+.timerText {
+  text-align: center;
+  color: #666666;
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+/* Success state */
+.successMessage {
+  text-align: center;
+  padding: 20px 0;
+  color: #00A046; /* Green for success */
+}
+
+.successIcon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  color: #00A046; /* Green */
+}
+
+/* Error state */
+.errorMessage {
+  color: #FF3B30; /* Red for errors */
+  font-size: 12px;
+  margin-top: 8px;
+  text-align: center;
 }
 
 /* Responsive */
@@ -226,5 +260,15 @@
   
   .modalBody {
     padding: 20px;
+  }
+  
+  .phoneInput, .codeInput {
+    font-size: 16px;
+    padding: 10px 14px;
+  }
+  
+  .getCodeBtn, .loginBtn {
+    padding: 12px;
+    font-size: 14px;
   }
 }

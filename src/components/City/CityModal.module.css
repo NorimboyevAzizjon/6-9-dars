@@ -25,7 +25,7 @@
   max-height: 80vh;
   overflow: hidden;
   animation: slideUp 0.3s ease;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 20px 60px rgba(122, 60, 249, 0.2);
 }
 
 @keyframes slideUp {
@@ -44,13 +44,13 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px 24px;
-  border-bottom: 1px solid var(--uzum-border);
+  border-bottom: 1px solid #E5E5E5;
   background: white;
 }
 
 .modalHeader h2 {
   margin: 0;
-  color: var(--uzum-text);
+  color: #1A1A1A;
   font-size: 20px;
   font-weight: 600;
 }
@@ -61,7 +61,7 @@
   font-size: 24px;
   cursor: pointer;
   padding: 8px;
-  color: var(--uzum-gray);
+  color: #666666;
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -72,8 +72,8 @@
 }
 
 .closeBtn:hover {
-  background: var(--uzum-light-gray);
-  color: var(--uzum-red);
+  background: #F5F0FF; /* Purple background */
+  color: #7A3CF9; /* Purple */
 }
 
 .modalBody {
@@ -85,8 +85,8 @@
 
 .searchSection {
   padding: 20px 24px;
-  border-bottom: 1px solid var(--uzum-border);
-  background: #fafafa;
+  border-bottom: 1px solid #E5E5E5;
+  background: #FAFAFA;
 }
 
 .searchInputWrapper {
@@ -98,7 +98,7 @@
 .searchInput {
   width: 100%;
   padding: 12px 45px 12px 16px;
-  border: 2px solid var(--uzum-border);
+  border: 2px solid #E5E5E5;
   border-radius: 10px;
   font-size: 16px;
   outline: none;
@@ -107,13 +107,13 @@
 }
 
 .searchInput:focus {
-  border-color: var(--uzum-red);
+  border-color: #7A3CF9; /* Purple */
 }
 
 .searchIcon {
   position: absolute;
   right: 16px;
-  color: var(--uzum-gray);
+  color: #666666;
   font-size: 16px;
 }
 
@@ -126,7 +126,7 @@
 .noResults {
   text-align: center;
   padding: 40px 20px;
-  color: var(--uzum-gray);
+  color: #666666;
   font-size: 16px;
 }
 
@@ -140,18 +140,18 @@
   justify-content: space-between;
   align-items: center;
   transition: all 0.2s ease;
-  border-bottom: 1px solid var(--uzum-light-gray);
+  border-bottom: 1px solid #F8F8F8;
   font-size: 16px;
-  color: var(--uzum-text);
+  color: #1A1A1A;
 }
 
 .cityItem:hover {
-  background: #f8f9fa;
+  background: #F5F0FF; /* Purple background */
 }
 
 .cityItem.selected {
-  background: rgba(229, 38, 30, 0.05);
-  color: var(--uzum-red);
+  background: #7A3CF9; /* Purple */
+  color: white;
   font-weight: 600;
 }
 
@@ -161,21 +161,72 @@
 }
 
 .checkmark {
-  color: var(--uzum-red);
+  color: white;
   font-weight: bold;
   font-size: 18px;
 }
 
 .selectedCity {
   padding: 16px 24px;
-  border-top: 1px solid var(--uzum-border);
-  background: #fafafa;
+  border-top: 1px solid #E5E5E5;
+  background: #FAFAFA;
   font-size: 14px;
-  color: var(--uzum-text);
+  color: #1A1A1A;
 }
 
 .selectedCity strong {
-  color: var(--uzum-red);
+  color: #7A3CF9; /* Purple */
+}
+
+/* Popular cities section */
+.popularCities {
+  padding: 16px 24px;
+  border-bottom: 1px solid #E5E5E5;
+  background: #F5F0FF; /* Purple background */
+}
+
+.popularTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: #7A3CF9; /* Purple */
+  margin-bottom: 12px;
+}
+
+.popularCitiesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 8px;
+}
+
+.popularCity {
+  padding: 10px 12px;
+  background: white;
+  border: 1px solid #E5E5E5;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  color: #1A1A1A;
+}
+
+.popularCity:hover {
+  border-color: #7A3CF9; /* Purple */
+  color: #7A3CF9; /* Purple */
+  background: #F5F0FF; /* Purple background */
+}
+
+/* Recent cities section */
+.recentCities {
+  padding: 16px 24px;
+  border-bottom: 1px solid #E5E5E5;
+}
+
+.recentTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: #666666;
+  margin-bottom: 12px;
 }
 
 /* Scrollbar */
@@ -184,17 +235,17 @@
 }
 
 .citiesList::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #F1F1F1;
   border-radius: 3px;
 }
 
 .citiesList::-webkit-scrollbar-thumb {
-  background: var(--uzum-red);
+  background: #7A3CF9; /* Purple */
   border-radius: 3px;
 }
 
 .citiesList::-webkit-scrollbar-thumb:hover {
-  background: var(--uzum-dark-red);
+  background: #6A2CE0; /* Dark purple */
 }
 
 /* Responsive */
@@ -219,5 +270,13 @@
   
   .selectedCity {
     padding: 14px 20px;
+  }
+  
+  .popularCities, .recentCities {
+    padding: 12px 20px;
+  }
+  
+  .popularCitiesGrid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }

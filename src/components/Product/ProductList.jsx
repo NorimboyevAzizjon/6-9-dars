@@ -55,7 +55,7 @@ const ProductList = ({ onToggleFavorite, favorites, onProductsLoaded }) => {
       <div className={styles.productList}>
         <div className={styles.container}>
           <div className={styles.error}>
-            ❌ Xatolik: {error}
+            Xatolik {error}
             <br />
             <small>Internet aloqasini tekshiring</small>
           </div>
@@ -88,7 +88,7 @@ const ProductList = ({ onToggleFavorite, favorites, onProductsLoaded }) => {
         {/* Smartfonlar */}
         {smartphones.length > 0 && (
           <div className={styles.categorySection}>
-            <h3 className={styles.categoryTitle}>📱 Smartfonlar va gadjetlar</h3>
+            <h3 className={styles.categoryTitle}>Smartfonlar va gadjetlar</h3>
             <div className={styles.productsGrid}>
               {smartphones.map(product => (
                 <ProductCard 
@@ -105,7 +105,7 @@ const ProductList = ({ onToggleFavorite, favorites, onProductsLoaded }) => {
         {/* Noutbuklar */}
         {laptops.length > 0 && (
           <div className={styles.categorySection}>
-            <h3 className={styles.categoryTitle}>💻 Noutbuklar va kompyuterlar</h3>
+            <h3 className={styles.categoryTitle}>Noutbuklar va kompyuterlar</h3>
             <div className={styles.productsGrid}>
               {laptops.map(product => (
                 <ProductCard 
@@ -122,7 +122,7 @@ const ProductList = ({ onToggleFavorite, favorites, onProductsLoaded }) => {
         {/* Go'zallik */}
         {skincare.length > 0 && (
           <div className={styles.categorySection}>
-            <h3 className={styles.categoryTitle}>💄 Go'zallik va parvarish</h3>
+            <h3 className={styles.categoryTitle}>Go'zallik va parvarish</h3>
             <div className={styles.productsGrid}>
               {skincare.map(product => (
                 <ProductCard 
@@ -139,7 +139,7 @@ const ProductList = ({ onToggleFavorite, favorites, onProductsLoaded }) => {
         {/* Atirlar */}
         {fragrances.length > 0 && (
           <div className={styles.categorySection}>
-            <h3 className={styles.categoryTitle}>🌸 Atirlar</h3>
+            <h3 className={styles.categoryTitle}>Atirlar</h3>
             <div className={styles.productsGrid}>
               {fragrances.map(product => (
                 <ProductCard 
@@ -156,7 +156,7 @@ const ProductList = ({ onToggleFavorite, favorites, onProductsLoaded }) => {
         {/* Uy-ro'zg'or */}
         {homeDecoration.length > 0 && (
           <div className={styles.categorySection}>
-            <h3 className={styles.categoryTitle}>🏠 Uy-ro'zg'or buyumlari</h3>
+            <h3 className={styles.categoryTitle}>Uy-ro'zg'or buyumlari</h3>
             <div className={styles.productsGrid}>
               {homeDecoration.map(product => (
                 <ProductCard 
@@ -173,7 +173,7 @@ const ProductList = ({ onToggleFavorite, favorites, onProductsLoaded }) => {
         {/* Oziq-ovqat */}
         {groceries.length > 0 && (
           <div className={styles.categorySection}>
-            <h3 className={styles.categoryTitle}>🍎 Oziq-ovqat mahsulotlari</h3>
+            <h3 className={styles.categoryTitle}>Oziq-ovqat mahsulotlari</h3>
             <div className={styles.productsGrid}>
               {groceries.map(product => (
                 <ProductCard 
@@ -190,7 +190,7 @@ const ProductList = ({ onToggleFavorite, favorites, onProductsLoaded }) => {
         {/* Mebel */}
         {furniture.length > 0 && (
           <div className={styles.categorySection}>
-            <h3 className={styles.categoryTitle}>🛋️ Mebel</h3>
+            <h3 className={styles.categoryTitle}> Mebel</h3>
             <div className={styles.productsGrid}>
               {furniture.map(product => (
                 <ProductCard 

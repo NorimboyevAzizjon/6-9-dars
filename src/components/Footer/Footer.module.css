@@ -1,6 +1,5 @@
 .footer {
-  background: #2c3e50;
-  color: white;
+  color: black;
   margin-top: auto;
 }
 
@@ -15,8 +14,9 @@
 
 .footerSection h3 {
   margin-bottom: 15px;
-  color: #ff3d00;
+  color: black; /* Purple */
   font-size: 18px;
+  font-weight: 600;
 }
 
 .footerSection ul {
@@ -34,7 +34,7 @@
 
 .footerSection ul li:hover {
   opacity: 1;
-  color: #ff3d00;
+  color: #7A3CF9; /* Purple */
   transform: translateX(5px);
 }
 
@@ -47,21 +47,16 @@
 
 .appStore, .googlePlay {
   padding: 12px 20px;
-  background: #34495e;
-  color: white;
+  background: white;
+  color: black;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   text-align: center;
   font-size: 14px;
   transition: all 0.3s ease;
-  border: 1px solid #4a6278;
-}
-
-.appStore:hover, .googlePlay:hover {
-  background: #ff3d00;
-  border-color: #ff3d00;
-  transform: translateY(-2px);
+ 
+  font-weight: 500;
 }
 
 .socialLinks {
@@ -71,10 +66,12 @@
 }
 
 .footerBottom {
-  border-top: 1px solid #34495e;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #333333;
   padding: 20px;
   text-align: center;
-  background: #1a252f;
+
 }
 
 .footerLinks {
@@ -82,7 +79,7 @@
 }
 
 .footerLinks a {
-  color: white;
+  color: black;
   text-decoration: none;
   margin: 0 15px;
   opacity: 0.8;
@@ -92,7 +89,7 @@
 
 .footerLinks a:hover {
   opacity: 1;
-  color: #ff3d00;
+  color: #7A3CF9; /* Purple */
 }
 
 .copyright {
@@ -101,45 +98,47 @@
   margin-top: 10px;
 }
 
-/* Responsive design */
-@media (max-width: 768px) {
-  .footerContent {
-    grid-template-columns: 1fr;
-    gap: 20px;
-    text-align: center;
-  }
-  
-  .footerLinks {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .footerLinks a {
-    margin: 5px 0;
-  }
-  
-  .appButtons {
-    flex-direction: row;
-    justify-content: center;
-  }
-  
-  .appStore, .googlePlay {
-    flex: 1;
-    max-width: 150px;
-  }
+/* Social icons */
+.socialIcons {
+  display: flex;
+  gap: 12px;
+  margin-top: 15px;
 }
 
-@media (max-width: 480px) {
-  .footerContent {
-    padding: 30px 15px;
-  }
-  
-  .footerSection h3 {
-    font-size: 16px;
-  }
-  
-  .footerSection ul li {
-    font-size: 13px;
-  }
+.socialIcon {
+  width: 36px;
+  height: 36px;
+  background: #2D2D2D;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid #444444;
 }
+
+.socialIcon:hover {
+  background: #7A3CF9; /* Purple */
+  border-color: #7A3CF9; /* Purple */
+  transform: translateY(-2px);
+}
+
+/* Payment methods */
+.paymentMethods {
+  margin-top: 20px;
+  opacity: 0.8;
+}
+
+.paymentMethods p {
+  font-size: 12px;
+  margin-bottom: 8px;
+  color: #7A3CF9; /* Purple */
+}
+
+.paymentIcons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
