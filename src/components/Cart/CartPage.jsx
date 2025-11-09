@@ -16,6 +16,19 @@ const CartPage = () => {
     console.log("Buyurtma berish");
   };
 
+  // Takrorlanmaydigan mahsulotlar ro'yxati
+  const uniqueCartItems = cartItems.reduce((acc, item) => {
+    const existingItem = acc.find(i => i.id === item.id);
+    if (existingItem) {
+      // Agar mahsulot allaqachon ro'yxatda bo'lsa, faqat miqdorini yangilaymiz
+      existingItem.quantity = item.quantity;
+    } else {
+      // Yangi mahsulot qo'shamiz
+      acc.push({ ...item });
+    }
+    return acc;
+  }, []);
+
   return (
     <div className={styles.cartPage}>
       <div className={styles.cartHeader}>
@@ -26,7 +39,7 @@ const CartPage = () => {
       </div>
 
       <div className={styles.cartContent}>
-        {cartItems.length === 0 ? (
+        {uniqueCartItems.length === 0 ? (
           <div className={styles.emptyCart}>
             <i className="fas fa-shopping-cart"></i>
             <h2>Savat bo'sh</h2>
@@ -41,12 +54,15 @@ const CartPage = () => {
         ) : (
           <>
             <div className={styles.cartItems}>
-              {cartItems.map((item) => (
+              {uniqueCartItems.map((item) => (
                 <div key={item.id} className={styles.cartItem}>
                   <img src={item.image} alt={item.name} />
                   <div className={styles.itemDetails}>
                     <h3>{item.name}</h3>
                     <p className={styles.price}>${item.price}</p>
+                    <p className={styles.totalPrice}>
+                      Jami: ${(item.price * item.quantity).toFixed(2)}
+                    </p>
                   </div>
                   <div className={styles.quantityControls}>
                     <button
@@ -74,7 +90,15 @@ const CartPage = () => {
 
             <div className={styles.cartSummary}>
               <div className={styles.summaryRow}>
-                <span>Jami:</span>
+                <span>Mahsulotlar soni:</span>
+                <span>{uniqueCartItems.length} ta</span>
+              </div>
+              <div className={styles.summaryRow}>
+                <span>Jami miqdor:</span>
+                <span>{cartItems.reduce((total, item) => total + item.quantity, 0)} dona</span>
+              </div>
+              <div className={styles.summaryRow}>
+                <span>Umumiy summa:</span>
                 <span>${getCartTotal()}</span>
               </div>
               <button
