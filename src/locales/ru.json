@@ -44,11 +44,33 @@
     "user_agreement": "Пользовательское соглашение",
     "copyright": "© 2025 «UZUM MARKET». СТИР 309376127. Все права защищены"
   },
+  "cart": {
+    "title": "Корзина",
+    "empty": "Корзина пуста",
+    "priceGuarantee": "ГАРАНТИЯ НИЗКОЙ ЦЕНЫ",
+    "addToFavorites": "Добавить в избранное",
+    "remove": "Удалить",
+    "total": "Итого",
+    "clear": "Очистить",
+    "checkout": "Оформить заказ",
+    "monthly": "в месяц",
+    "my_cart": "Моя Корзина",
+    "add_products": "Добавьте товары в корзину",
+    "continue_shopping": "Продолжить покупки",
+    "item_total": "Итого",
+    "products_count": "Количество товаров",
+    "total_quantity": "Общее количество",
+    "total_amount": "Общая сумма",
+    "pcs": "шт",
+    "items": "ед"
+  },
   "common": {
     "app_store": "App Store",
     "google_play": "Google Play",
     "uzbek": "O'zbekcha",
     "russian": "Русский",
-    "english": "English"
+    "english": "English",
+    "currency": "сум",
+    "back": "Назад"
   }
 }

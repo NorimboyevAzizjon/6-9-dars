@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useCart } from '../../hooks/useCart';
+import { useTranslation } from 'react-i18next';
 import styles from './CartSidebar.module.css';
 
 const CartSidebar = ({ isOpen, onClose }) => {
   const { cart, removeFromCart, updateQuantity, getCartTotal, clearCart } = useCart();
   const [favorites, setFavorites] = useState(new Set());
+  const { t } = useTranslation();
 
   const handleOverlayClick = (e) => {
     if (e.target === e.currentTarget) {
@@ -28,7 +30,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
     <div className={styles.cartOverlay} onClick={handleOverlayClick}>
       <div className={styles.cartSidebar}>
         <div className={styles.cartHeader}>
-          <h2>Savat ({cart.items.reduce((total, item) => total + item.quantity, 0)})</h2>
+          <h2>{t('cart.title')} ({cart.items.reduce((total, item) => total + item.quantity, 0)})</h2>
           <button className={styles.closeBtn} onClick={onClose}>
             <i className="fas fa-times"></i>
           </button>
@@ -36,7 +38,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
 
         <div className={styles.cartItems}>
           {cart.items.length === 0 ? (
-            <p className={styles.emptyCart}>Savat bo'sh</p>
+            <p className={styles.emptyCart}>{t('cart.empty')}</p>
           ) : (
             cart.items.map(item => (
               <div key={item.id} className={styles.cartItem}>
@@ -46,15 +48,15 @@ const CartSidebar = ({ isOpen, onClose }) => {
                   <h4>{item.name}</h4>
                   
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <span className={styles.itemPrice}>{item.price.toLocaleString()} so'm</span>
+                    <span className={styles.itemPrice}>{item.price.toLocaleString()} {t('common.currency')}</span>
                     {item.originalPrice && item.originalPrice > item.price && (
-                      <span className={styles.discountBadge}>ARZON NARX KAFOLATI</span>
+                      <span className={styles.discountBadge}>{t('cart.priceGuarantee')}</span>
                     )}
                   </div>
 
                   {item.originalPrice && item.originalPrice > item.price && (
                     <div className={styles.monthlyInfo}>
-                      {(item.price / 12).toLocaleString('uz-UZ', { maximumFractionDigits: 0 })} so'm/oyiga
+                      {(item.price / 12).toLocaleString()} {t('common.currency')} {t('cart.monthly')}
                     </div>
                   )}
 
@@ -79,7 +81,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
                 <button 
                   onClick={() => toggleFavorite(item.id)}
                   className={`${styles.favoriteBtn} ${favorites.has(item.id) ? styles.favoriteActive : ''}`}
-                  title="Sevimlilarga qo'shish"
+                  title={t('cart.addToFavorites')}
                 >
                   <i className={`fas ${favorites.has(item.id) ? 'fa-heart' : 'fa-heart'}`}></i>
                 </button>
@@ -87,7 +89,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
                 <button 
                   onClick={() => removeFromCart(item.id)}
                   className={styles.removeBtn}
-                  title="O'chirish"
+                  title={t('cart.remove')}
                 >
                   <i className="fas fa-trash"></i>
                 </button>
@@ -99,16 +101,16 @@ const CartSidebar = ({ isOpen, onClose }) => {
         {cart.items.length > 0 && (
           <div className={styles.cartFooter}>
             <div className={styles.cartTotal}>
-              <span>Jami:</span>
-              <strong>{getCartTotal().toLocaleString()} so'm</strong>
+              <span>{t('cart.total')}:</span>
+              <strong>{getCartTotal().toLocaleString()} {t('common.currency')}</strong>
             </div>
             <div className={styles.cartActions}>
               <button className={styles.clearBtn} onClick={clearCart}>
-                Tozalash
+                {t('cart.clear')}
               </button>
               <button className={styles.checkoutBtn}>
                 <i className="fas fa-credit-card"></i>
-                Buyurtma berish
+                {t('cart.checkout')}
               </button>
             </div>
           </div>
