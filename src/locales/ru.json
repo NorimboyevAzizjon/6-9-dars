@@ -1,0 +1,54 @@
+{
+  "header": {
+    "city": "Город",
+    "delivery_points": "Пункты выдачи",
+    "become_seller": "Стать продавцом",
+    "open_point": "Открыть пункт выдачи",
+    "faq": "Вопрос-ответ",
+    "orders": "Мои заказы",
+    "catalog": "Каталог",
+    "search_placeholder": "Поиск товаров и категорий",
+    "login": "Войти",
+    "logout": "Выйти",
+    "user": "Пользователь",
+    "favorites": "Избранное",
+    "cart": "Корзина",
+    "language": "Язык"
+  },
+  "categories": {
+    "weekly": "Товары недели",
+    "winter": "Зимняя коллекция",
+    "hobby": "Хобби и творчество",
+    "tourism": "Туризм, рыбалка и охота",
+    "electronics": "Электроника",
+    "appliances": "Бытовая техника",
+    "clothing": "Одежда",
+    "shoes": "Обувь",
+    "accessories": "Аксессуары",
+    "more": "Еще"
+  },
+  "footer": {
+    "about": "О нас",
+    "delivery_points": "Пункты выдачи",
+    "vacancies": "Вакансии",
+    "for_users": "Пользователям",
+    "contact": "Связаться с нами",
+    "faq": "Вопрос-ответ",
+    "for_business": "Бизнесу",
+    "sell_on_uzum": "Продавать на Uzum",
+    "seller_login": "Войти в кабинет продавца",
+    "open_delivery_point": "Открыть пункт выдачи",
+    "download_app": "Скачать приложение",
+    "social_media": "Uzum в соцсетях",
+    "privacy": "Соглашение о конфиденциальности",
+    "user_agreement": "Пользовательское соглашение",
+    "copyright": "© 2025 «UZUM MARKET». СТИР 309376127. Все права защищены"
+  },
+  "common": {
+    "app_store": "App Store",
+    "google_play": "Google Play",
+    "uzbek": "O'zbekcha",
+    "russian": "Русский",
+    "english": "English"
+  }
+}

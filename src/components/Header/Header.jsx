@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import CartIcon from '../Cart/CartIcon';
 import CartSidebar from '../Cart/CartSidebar';
 import FavoritesSidebar from '../Favorites/FavoritesSidebar';
@@ -8,6 +9,7 @@ import { useCart } from '../../hooks/useCart';
 import styles from './Header.module.css';
 
 const Header = ({ favorites, onToggleFavorite, allProducts }) => {
+  const { t, i18n } = useTranslation();
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isFavoritesOpen, setIsFavoritesOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
@@ -16,6 +18,11 @@ const Header = ({ favorites, onToggleFavorite, allProducts }) => {
   const [selectedCity, setSelectedCity] = useState('Toshkent');
   const [activeLink, setActiveLink] = useState('/');
   const { addToCart } = useCart();
+
+  // Til o'zgartirish funksiyasi
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
 
   // Link bosilganda active holatini o'zgartirish
   const handleLinkClick = (path) => {
@@ -65,7 +72,7 @@ const Header = ({ favorites, onToggleFavorite, allProducts }) => {
             onClick={() => handleLinkClick('/delivery-points')}
           >
             <i className="fas fa-box"></i>
-            Topshirish punktlari
+            {t('header.delivery_points')}
           </a>
           <a 
             href="#become-seller" 
@@ -73,7 +80,7 @@ const Header = ({ favorites, onToggleFavorite, allProducts }) => {
             onClick={() => handleLinkClick('/become-seller')}
           >
             <i className="fas fa-user-tie"></i>
-            Sotuvchi bo'lish
+            {t('header.become_seller')}
           </a>
           <a 
             href="#open-point" 
@@ -81,7 +88,7 @@ const Header = ({ favorites, onToggleFavorite, allProducts }) => {
             onClick={() => handleLinkClick('/open-point')}
           >
             <i className="fas fa-store"></i>
-            Topshirish punktini ochish
+            {t('header.open_point')}
           </a>
           <a 
             href="#faq" 
@@ -89,7 +96,7 @@ const Header = ({ favorites, onToggleFavorite, allProducts }) => {
             onClick={() => handleLinkClick('/faq')}
           >
             <i className="fas fa-question-circle"></i>
-            Savol-javob
+            {t('header.faq')}
           </a>
           <a 
             href="#orders" 
@@ -97,11 +104,22 @@ const Header = ({ favorites, onToggleFavorite, allProducts }) => {
             onClick={() => handleLinkClick('/orders')}
           >
             <i className="fas fa-clipboard-list"></i>
-            Buyurtmalarim
+            {t('header.orders')}
           </a>
-          <select className={styles.langSelect}>
-            <option><i className="fas fa-globe"></i> O'zbekcha</option>
-            <option><i className="fas fa-globe"></i> Русский</option>
+          <select 
+            className={styles.langSelect}
+            value={i18n.language}
+            onChange={(e) => changeLanguage(e.target.value)}
+          >
+            <option value="uz">
+              <i className="fas fa-globe"></i> {t('common.uzbek')}
+            </option>
+            <option value="ru">
+              <i className="fas fa-globe"></i> {t('common.russian')}
+            </option>
+            <option value="en">
+              <i className="fas fa-globe"></i> {t('common.english')}
+            </option>
           </select>
         </div>
 
@@ -122,13 +140,13 @@ const Header = ({ favorites, onToggleFavorite, allProducts }) => {
             onClick={() => handleLinkClick('/catalog')}
           >
             <i className="fas fa-bars"></i>
-            <span>Katalog</span>
+            <span>{t('header.catalog')}</span>
           </a>
 
           <div className={styles.searchBar}>
             <input 
               type="text" 
-              placeholder="Mahsulotlar va turkumlar izlash" 
+              placeholder={t('header.search_placeholder')} 
             />
             <button><i className="fas fa-search"></i></button>
           </div>
@@ -138,13 +156,13 @@ const Header = ({ favorites, onToggleFavorite, allProducts }) => {
               <div className={styles.userMenu}>
                 <span className={styles.userName}>
                   <i className="fas fa-user"></i>
-                  Foydalanuvchi
+                  {t('header.user')}
                 </span>
                 <button 
                   className={styles.logoutBtn}
                   onClick={handleLogout}
                 >
-                  Chiqish
+                  {t('header.logout')}
                 </button>
               </div>
             ) : (
@@ -153,7 +171,7 @@ const Header = ({ favorites, onToggleFavorite, allProducts }) => {
                 onClick={() => setIsLoginOpen(true)}
               >
                 <i className="fas fa-user"></i>
-                Kirish
+                {t('header.login')}
               </button>
             )}
             <button 
@@ -168,7 +186,7 @@ const Header = ({ favorites, onToggleFavorite, allProducts }) => {
               onClick={() => setIsCartOpen(true)}
             >
               <CartIcon />
-              Savat
+              {t('header.cart')}
             </button>
           </div>
         </div>
@@ -180,70 +198,70 @@ const Header = ({ favorites, onToggleFavorite, allProducts }) => {
             className={`${styles.categoryLink} ${activeLink === '/weekly' ? styles.active : ''}`}
             onClick={() => handleLinkClick('/weekly')}
           >
-            Hafta tovarlari
+            {t('categories.weekly')}
           </a>
           <a 
             href="#winter" 
             className={`${styles.categoryLink} ${activeLink === '/winter' ? styles.active : ''}`}
             onClick={() => handleLinkClick('/winter')}
           >
-            Qishki kolleksiya
+            {t('categories.winter')}
           </a>
           <a 
             href="#hobby" 
             className={`${styles.categoryLink} ${activeLink === '/hobby' ? styles.active : ''}`}
             onClick={() => handleLinkClick('/hobby')}
           >
-            Xobbi va ijod
+            {t('categories.hobby')}
           </a>
           <a 
             href="#tourism" 
             className={`${styles.categoryLink} ${activeLink === '/tourism' ? styles.active : ''}`}
             onClick={() => handleLinkClick('/tourism')}
           >
-            Turizm, baliq ovi va ovchilik
+            {t('categories.tourism')}
           </a>
           <a 
             href="#electronics" 
             className={`${styles.categoryLink} ${activeLink === '/electronics' ? styles.active : ''}`}
             onClick={() => handleLinkClick('/electronics')}
           >
-            Elektronika
+            {t('categories.electronics')}
           </a>
           <a 
             href="#appliances" 
             className={`${styles.categoryLink} ${activeLink === '/appliances' ? styles.active : ''}`}
             onClick={() => handleLinkClick('/appliances')}
           >
-            Maishiy texnika
+            {t('categories.appliances')}
           </a>
           <a 
             href="#clothing" 
             className={`${styles.categoryLink} ${activeLink === '/clothing' ? styles.active : ''}`}
             onClick={() => handleLinkClick('/clothing')}
           >
-            Kiyim
+            {t('categories.clothing')}
           </a>
           <a 
             href="#shoes" 
             className={`${styles.categoryLink} ${activeLink === '/shoes' ? styles.active : ''}`}
             onClick={() => handleLinkClick('/shoes')}
           >
-            Poyabzallar
+            {t('categories.shoes')}
           </a>
           <a 
             href="#accessories" 
             className={`${styles.categoryLink} ${activeLink === '/accessories' ? styles.active : ''}`}
             onClick={() => handleLinkClick('/accessories')}
           >
-            Aksessuarlar
+            {t('categories.accessories')}
           </a>
           <a 
             href="#more" 
             className={`${styles.categoryLink} ${activeLink === '/more' ? styles.active : ''}`}
             onClick={() => handleLinkClick('/more')}
           >
-            Yana <i className="fas fa-chevron-down"></i>
+            {t('categories.more')} <i className="fas fa-chevron-down"></i>
           </a>
         </nav>
       </header>

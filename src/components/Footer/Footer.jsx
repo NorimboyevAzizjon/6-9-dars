@@ -1,55 +1,57 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import styles from './Footer.module.css';
 
 const Footer = () => {
+  const { t } = useTranslation();
+
   return (
     <footer className={styles.footer}>
       <div className={styles.footerContent}>
         <div className={styles.footerSection}>
-          <h3>Biz haqimizda</h3>
+          <h3>{t('footer.about')}</h3>
           <ul>
-            <li>Topshirish punktlari</li>
-            <li>Vakansiyalar</li>
+            <li>{t('footer.delivery_points')}</li>
+            <li>{t('footer.vacancies')}</li>
           </ul>
         </div>
 
         <div className={styles.footerSection}>
-          <h3>Foydalanuvchilarga</h3>
+          <h3>{t('footer.for_users')}</h3>
           <ul>
-            <li>Biz bilan bog'lanish</li>
-            <li>Savol-Javob</li>
+            <li>{t('footer.contact')}</li>
+            <li>{t('footer.faq')}</li>
           </ul>
         </div>
 
         <div className={styles.footerSection}>
-          <h3>Tadbirkoriarga</h3>
+          <h3>{t('footer.for_business')}</h3>
           <ul>
-            <li>Uzumda soting</li>
-            <li>Sotuvchi kabinetiga kirish</li>
-            <li>Topshirish punktini ochish</li>
+            <li>{t('footer.sell_on_uzum')}</li>
+            <li>{t('footer.seller_login')}</li>
+            <li>{t('footer.open_delivery_point')}</li>
           </ul>
         </div>
 
         <div className={styles.footerSection}>
-          <h3>Ilovani yuklab olish</h3>
+          <h3>{t('footer.download_app')}</h3>
           <div className={styles.appButtons}>
-            <button className={styles.appStore}>App Store</button>
-            <button className={styles.googlePlay}>Google Play</button>
+            <button className={styles.appStore}>{t('common.app_store')}</button>
+            <button className={styles.googlePlay}>{t('common.google_play')}</button>
           </div>
           <div className={styles.socialLinks}>
-            <span>Uzum ijtimoiy tarmoqlarda</span>
-            
+            <span>{t('footer.social_media')}</span>
           </div>
         </div>
       </div>
 
       <div className={styles.footerBottom}>
         <div className={styles.footerLinks}>
-          <a href="#">Maxfiylik kelishuvi</a>
-          <a href="#">Foydalanuvchi kelishuvi</a>
+          <a href="#">{t('footer.privacy')}</a>
+          <a href="#">{t('footer.user_agreement')}</a>
         </div>
         <div className={styles.copyright}>
-          © 2025 "UZUM MARKET". STIR 309376127. Barcha huquqlar himoyalangan
+          {t('footer.copyright')}
         </div>
       </div>
     </footer>

@@ -1,0 +1,54 @@
+{
+  "header": {
+    "city": "Shahar",
+    "delivery_points": "Topshirish punktlari",
+    "become_seller": "Sotuvchi bo'lish",
+    "open_point": "Topshirish punktini ochish",
+    "faq": "Savol-javob",
+    "orders": "Buyurtmalarim",
+    "catalog": "Katalog",
+    "search_placeholder": "Mahsulotlar va turkumlar izlash",
+    "login": "Kirish",
+    "logout": "Chiqish",
+    "user": "Foydalanuvchi",
+    "favorites": "Sevimlilar",
+    "cart": "Savat",
+    "language": "Til"
+  },
+  "categories": {
+    "weekly": "Hafta tovarlari",
+    "winter": "Qishki kolleksiya",
+    "hobby": "Xobbi va ijod",
+    "tourism": "Turizm, baliq ovi va ovchilik",
+    "electronics": "Elektronika",
+    "appliances": "Maishiy texnika",
+    "clothing": "Kiyim",
+    "shoes": "Poyabzallar",
+    "accessories": "Aksessuarlar",
+    "more": "Yana"
+  },
+  "footer": {
+    "about": "Biz haqimizda",
+    "delivery_points": "Topshirish punktlari",
+    "vacancies": "Vakansiyalar",
+    "for_users": "Foydalanuvchilarga",
+    "contact": "Biz bilan bog'lanish",
+    "faq": "Savol-Javob",
+    "for_business": "Tadbirkoriarga",
+    "sell_on_uzum": "Uzumda soting",
+    "seller_login": "Sotuvchi kabinetiga kirish",
+    "open_delivery_point": "Topshirish punktini ochish",
+    "download_app": "Ilovani yuklab olish",
+    "social_media": "Uzum ijtimoiy tarmoqlarda",
+    "privacy": "Maxfiylik kelishuvi",
+    "user_agreement": "Foydalanuvchi kelishuvi",
+    "copyright": "© 2025 \"UZUM MARKET\". STIR 309376127. Barcha huquqlar himoyalangan"
+  },
+  "common": {
+    "app_store": "App Store",
+    "google_play": "Google Play",
+    "uzbek": "O'zbekcha",
+    "russian": "Русский",
+    "english": "English"
+  }
+}

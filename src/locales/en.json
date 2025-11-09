@@ -1,0 +1,54 @@
+{
+  "header": {
+    "city": "City",
+    "delivery_points": "Delivery points",
+    "become_seller": "Become a seller",
+    "open_point": "Open delivery point",
+    "faq": "FAQ",
+    "orders": "My orders",
+    "catalog": "Catalog",
+    "search_placeholder": "Search products and categories",
+    "login": "Login",
+    "logout": "Logout",
+    "user": "User",
+    "favorites": "Favorites",
+    "cart": "Cart",
+    "language": "Language"
+  },
+  "categories": {
+    "weekly": "Weekly products",
+    "winter": "Winter collection",
+    "hobby": "Hobby and creativity",
+    "tourism": "Tourism, fishing and hunting",
+    "electronics": "Electronics",
+    "appliances": "Home appliances",
+    "clothing": "Clothing",
+    "shoes": "Shoes",
+    "accessories": "Accessories",
+    "more": "More"
+  },
+  "footer": {
+    "about": "About us",
+    "delivery_points": "Delivery points",
+    "vacancies": "Vacancies",
+    "for_users": "For users",
+    "contact": "Contact us",
+    "faq": "FAQ",
+    "for_business": "For business",
+    "sell_on_uzum": "Sell on Uzum",
+    "seller_login": "Seller login",
+    "open_delivery_point": "Open delivery point",
+    "download_app": "Download app",
+    "social_media": "Uzum on social media",
+    "privacy": "Privacy agreement",
+    "user_agreement": "User agreement",
+    "copyright": "© 2025 \"UZUM MARKET\". STIR 309376127. All rights reserved"
+  },
+  "common": {
+    "app_store": "App Store",
+    "google_play": "Google Play",
+    "uzbek": "O'zbekcha",
+    "russian": "Русский",
+    "english": "English"
+  }
+}
