@@ -4,10 +4,10 @@
     "delivery_points": "Topshirish punktlari",
     "become_seller": "Sotuvchi bo'lish",
     "open_point": "Topshirish punktini ochish",
-    "faq": "Savol-javob",
-    "orders": "Buyurtmalarim",
+    "faq": "Savol-Javob",
+    "orders": "Mening buyurtmalarim",
     "catalog": "Katalog",
-    "search_placeholder": "Mahsulotlar va turkumlar izlash",
+    "search_placeholder": "Mahsulot va kategoriyalarni qidirish",
     "login": "Kirish",
     "logout": "Chiqish",
     "user": "Foydalanuvchi",
@@ -16,14 +16,14 @@
     "language": "Til"
   },
   "categories": {
-    "weekly": "Hafta tovarlari",
+    "weekly": "Hafta mahsulotlari",
     "winter": "Qishki kolleksiya",
-    "hobby": "Xobbi va ijod",
-    "tourism": "Turizm, baliq ovi va ovchilik",
+    "hobby": "Hobbi va ijod",
+    "tourism": "Turizm, baliqchilik va ov",
     "electronics": "Elektronika",
     "appliances": "Maishiy texnika",
     "clothing": "Kiyim",
-    "shoes": "Poyabzallar",
+    "shoes": "Oyoq kiyim",
     "accessories": "Aksessuarlar",
     "more": "Yana"
   },
@@ -34,7 +34,7 @@
     "for_users": "Foydalanuvchilarga",
     "contact": "Biz bilan bog'lanish",
     "faq": "Savol-Javob",
-    "for_business": "Tadbirkoriarga",
+    "for_business": "Tadbirkorlarga",
     "sell_on_uzum": "Uzumda soting",
     "seller_login": "Sotuvchi kabinetiga kirish",
     "open_delivery_point": "Topshirish punktini ochish",
@@ -42,13 +42,35 @@
     "social_media": "Uzum ijtimoiy tarmoqlarda",
     "privacy": "Maxfiylik kelishuvi",
     "user_agreement": "Foydalanuvchi kelishuvi",
-    "copyright": "© 2025 \"UZUM MARKET\". STIR 309376127. Barcha huquqlar himoyalangan"
+    "copyright": "© 2025 «UZUM MARKET». STIR 309376127. Barcha huquqlar himoyalangan"
+  },
+  "cart": {
+    "title": "Savat",
+    "empty": "Savat bo'sh",
+    "priceGuarantee": "ARZON NARX KAFOLATI",
+    "addToFavorites": "Sevimlilarga qo'shish",
+    "remove": "O'chirish",
+    "total": "Jami",
+    "clear": "Tozalash",
+    "checkout": "Buyurtma berish",
+    "monthly": "oyiga",
+    "my_cart": "Mening Savatim",
+    "add_products": "Savatga mahsulot qo'shing",
+    "continue_shopping": "Xarid qilishni davom etish",
+    "item_total": "Jami",
+    "products_count": "Mahsulotlar soni",
+    "total_quantity": "Jami miqdor",
+    "total_amount": "Umumiy summa",
+    "pcs": "ta",
+    "items": "dona"
   },
   "common": {
     "app_store": "App Store",
     "google_play": "Google Play",
     "uzbek": "O'zbekcha",
     "russian": "Русский",
-    "english": "English"
+    "english": "English",
+    "currency": "so'm",
+    "back": "Orqaga"
   }
 }

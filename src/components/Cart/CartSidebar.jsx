@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
+<<<<<<< HEAD
 import { useCart } from '../../context/CartContext';
+=======
+import { useCart } from '../../hooks/useCart';
+import { useTranslation } from 'react-i18next';
+>>>>>>> df3ea054a634e94ed96bee55b159d0e179199223
 import styles from './CartSidebar.module.css';
 
 const CartSidebar = ({ isOpen, onClose }) => {
@@ -12,6 +17,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
   } = useCart();
   
   const [favorites, setFavorites] = useState(new Set());
+  const { t } = useTranslation();
 
   const handleOverlayClick = (e) => {
     if (e.target === e.currentTarget) {
@@ -53,19 +59,28 @@ const CartSidebar = ({ isOpen, onClose }) => {
     <div className={styles.cartOverlay} onClick={handleOverlayClick}>
       <div className={styles.cartSidebar}>
         <div className={styles.cartHeader}>
+<<<<<<< HEAD
           <h2>Savat ({items.reduce((total, item) => total + item.quantity, 0)})</h2>
+=======
+          <h2>{t('cart.title')} ({cart.items.reduce((total, item) => total + item.quantity, 0)})</h2>
+>>>>>>> df3ea054a634e94ed96bee55b159d0e179199223
           <button className={styles.closeBtn} onClick={onClose}>
             <i className="fas fa-times"></i>
           </button>
         </div>
 
         <div className={styles.cartItems}>
+<<<<<<< HEAD
           {items.length === 0 ? (
             <div className={styles.emptyCart}>
               <i className="fas fa-shopping-cart"></i>
               <p>Savat bo'sh</p>
               <span>Mahsulot qo'shish uchun "Savatchaga" tugmasini bosing</span>
             </div>
+=======
+          {cart.items.length === 0 ? (
+            <p className={styles.emptyCart}>{t('cart.empty')}</p>
+>>>>>>> df3ea054a634e94ed96bee55b159d0e179199223
           ) : (
             items.map(item => (
               <div key={item.id} className={styles.cartItem}>
@@ -76,6 +91,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
                   className={styles.itemImage} 
                 />
                 
+<<<<<<< HEAD
                 <div className={styles.itemContent}>
                   {/* Mahsulot nomi va reyting */}
                   <div className={styles.productHeader}>
@@ -90,6 +106,21 @@ const CartSidebar = ({ isOpen, onClose }) => {
                   {item.brand && (
                     <div className={styles.brand}>
                       <span>{item.brand}</span>
+=======
+                <div className={styles.itemInfo}>
+                  <h4>{item.name}</h4>
+                  
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <span className={styles.itemPrice}>{item.price.toLocaleString()} {t('common.currency')}</span>
+                    {item.originalPrice && item.originalPrice > item.price && (
+                      <span className={styles.discountBadge}>{t('cart.priceGuarantee')}</span>
+                    )}
+                  </div>
+
+                  {item.originalPrice && item.originalPrice > item.price && (
+                    <div className={styles.monthlyInfo}>
+                      {(item.price / 12).toLocaleString()} {t('common.currency')} {t('cart.monthly')}
+>>>>>>> df3ea054a634e94ed96bee55b159d0e179199223
                     </div>
                   )}
 
@@ -170,6 +201,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
                   </div>
                 </div>
 
+<<<<<<< HEAD
                 {/* Harakatlar tugmalari */}
                 <div className={styles.itemActions}>
                   <button 
@@ -188,6 +220,23 @@ const CartSidebar = ({ isOpen, onClose }) => {
                     <i className="fas fa-trash"></i>
                   </button>
                 </div>
+=======
+                <button 
+                  onClick={() => toggleFavorite(item.id)}
+                  className={`${styles.favoriteBtn} ${favorites.has(item.id) ? styles.favoriteActive : ''}`}
+                  title={t('cart.addToFavorites')}
+                >
+                  <i className={`fas ${favorites.has(item.id) ? 'fa-heart' : 'fa-heart'}`}></i>
+                </button>
+
+                <button 
+                  onClick={() => removeFromCart(item.id)}
+                  className={styles.removeBtn}
+                  title={t('cart.remove')}
+                >
+                  <i className="fas fa-trash"></i>
+                </button>
+>>>>>>> df3ea054a634e94ed96bee55b159d0e179199223
               </div>
             ))
           )}
@@ -195,6 +244,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
 
         {items.length > 0 && (
           <div className={styles.cartFooter}>
+<<<<<<< HEAD
             {/* Promo kod */}
             <div className={styles.promoSection}>
               <input 
@@ -205,6 +255,11 @@ const CartSidebar = ({ isOpen, onClose }) => {
               <button className={styles.applyPromoBtn}>
                 Qo'llash
               </button>
+=======
+            <div className={styles.cartTotal}>
+              <span>{t('cart.total')}:</span>
+              <strong>{getCartTotal().toLocaleString()} {t('common.currency')}</strong>
+>>>>>>> df3ea054a634e94ed96bee55b159d0e179199223
             </div>
 
             {/* Umumiy summa */}
@@ -226,11 +281,11 @@ const CartSidebar = ({ isOpen, onClose }) => {
             {/* Harakat tugmalari */}
             <div className={styles.cartActions}>
               <button className={styles.clearBtn} onClick={clearCart}>
-                Tozalash
+                {t('cart.clear')}
               </button>
               <button className={styles.checkoutBtn}>
                 <i className="fas fa-credit-card"></i>
-                Buyurtma berish
+                {t('cart.checkout')}
               </button>
             </div>
 
