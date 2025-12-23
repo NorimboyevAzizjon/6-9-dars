@@ -119,15 +119,9 @@ const Header = ({ favorites, onToggleFavorite, allProducts }) => {
             value={i18n.language}
             onChange={(e) => changeLanguage(e.target.value)}
           >
-            <option value="uz">
-              <i className="fas fa-globe"></i> O'zbekcha
-            </option>
-            <option value="ru">
-              <i className="fas fa-globe"></i> Русский
-            </option>
-            <option value="en">
-              <i className="fas fa-globe"></i> English
-            </option>
+            <option value="uz">🌐 O'zbekcha</option>
+            <option value="ru">🌐 Русский</option>
+            <option value="en">🌐 English</option>
           </select>
         </div>
         <div className={styles.mainNav}>

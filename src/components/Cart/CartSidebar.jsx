@@ -1,16 +1,12 @@
 import React, { useState } from 'react';
-<<<<<<< HEAD
-import { useCart } from '../../context/CartContext';
-=======
 import { useCart } from '../../hooks/useCart';
 import { useTranslation } from 'react-i18next';
-<<<<<<< HEAD
-=======
->>>>>>> df3ea054a634e94ed96bee55b159d0e179199223
->>>>>>> feature/product-detail
 import styles from './CartSidebar.module.css';
 
 const CartSidebar = ({ isOpen, onClose }) => {
+  // Language select state and handler
+  const [lang, setLang] = useState('uz');
+  const onChange = (e) => setLang(e.target.value);
   const { 
     items, 
     removeFromCart, 
@@ -61,36 +57,29 @@ const CartSidebar = ({ isOpen, onClose }) => {
   return (
     <div className={styles.cartOverlay} onClick={handleOverlayClick}>
       <div className={styles.cartSidebar}>
+        {/* Language select dropdown with icon */}
+        <div className="langSelectWrapper" style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
+          <i className="fas fa-globe"></i>
+          <select className="langSelect" value={lang} onChange={onChange} style={{ padding: '4px 8px' }}>
+            <option value="uz">Uzbek</option>
+            <option value="ru">Русский</option>
+            <option value="en">English</option>
+          </select>
+        </div>
         <div className={styles.cartHeader}>
-<<<<<<< HEAD
-          <h2>{t('cart.title')} ({cart.items.reduce((total, item) => total + item.quantity, 0)})</h2>
-=======
-<<<<<<< HEAD
-          <h2>Savat ({items.reduce((total, item) => total + item.quantity, 0)})</h2>
-=======
-          <h2>{t('cart.title')} ({cart.items.reduce((total, item) => total + item.quantity, 0)})</h2>
->>>>>>> df3ea054a634e94ed96bee55b159d0e179199223
->>>>>>> feature/product-detail
+          <h2>{t('cart.title')} ({items.reduce((total, item) => total + item.quantity, 0)})</h2>
           <button className={styles.closeBtn} onClick={onClose}>
             <i className="fas fa-times"></i>
           </button>
         </div>
 
         <div className={styles.cartItems}>
-<<<<<<< HEAD
           {items.length === 0 ? (
             <div className={styles.emptyCart}>
               <i className="fas fa-shopping-cart"></i>
-              <p>Savat bo'sh</p>
-              <span>Mahsulot qo'shish uchun "Savatchaga" tugmasini bosing</span>
+              <p>{t('cart.empty')}</p>
+              <span>{t('cart.addProductHint') || "Mahsulot qo'shish uchun 'Savatchaga' tugmasini bosing"}</span>
             </div>
-=======
-          {cart.items.length === 0 ? (
-            <p className={styles.emptyCart}>{t('cart.empty')}</p>
-<<<<<<< HEAD
-=======
->>>>>>> df3ea054a634e94ed96bee55b159d0e179199223
->>>>>>> feature/product-detail
           ) : (
             items.map(item => (
               <div key={item.id} className={styles.cartItem}>
@@ -100,23 +89,6 @@ const CartSidebar = ({ isOpen, onClose }) => {
                   alt={item.name} 
                   className={styles.itemImage} 
                 />
-                
-<<<<<<< HEAD
-                <div className={styles.itemContent}>
-                  {/* Mahsulot nomi va reyting */}
-                  <div className={styles.productHeader}>
-                    <h4 className={styles.productName}>{item.name}</h4>
-                    <div className={styles.rating}>
-                      <span className={styles.ratingStars}>★★★★★</span>
-                      <span className={styles.ratingCount}>({item.reviews || '17840'})</span>
-                    </div>
-                  </div>
-
-                  {/* Mahsulot brendi */}
-                  {item.brand && (
-                    <div className={styles.brand}>
-                      <span>{item.brand}</span>
-=======
                 <div className={styles.itemInfo}>
                   <h4>{item.name}</h4>
                   
@@ -130,10 +102,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
                   {item.originalPrice && item.originalPrice > item.price && (
                     <div className={styles.monthlyInfo}>
                       {(item.price / 12).toLocaleString()} {t('common.currency')} {t('cart.monthly')}
-<<<<<<< HEAD
-=======
->>>>>>> df3ea054a634e94ed96bee55b159d0e179199223
->>>>>>> feature/product-detail
+
                     </div>
                   )}
 
@@ -214,7 +183,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
                   </div>
                 </div>
 
-<<<<<<< HEAD
+
                 {/* Harakatlar tugmalari */}
                 <div className={styles.itemActions}>
                   <button 
@@ -233,23 +202,6 @@ const CartSidebar = ({ isOpen, onClose }) => {
                     <i className="fas fa-trash"></i>
                   </button>
                 </div>
-=======
-                <button 
-                  onClick={() => toggleFavorite(item.id)}
-                  className={`${styles.favoriteBtn} ${favorites.has(item.id) ? styles.favoriteActive : ''}`}
-                  title={t('cart.addToFavorites')}
-                >
-                  <i className={`fas ${favorites.has(item.id) ? 'fa-heart' : 'fa-heart'}`}></i>
-                </button>
-
-                <button 
-                  onClick={() => removeFromCart(item.id)}
-                  className={styles.removeBtn}
-                  title={t('cart.remove')}
-                >
-                  <i className="fas fa-trash"></i>
-                </button>
->>>>>>> df3ea054a634e94ed96bee55b159d0e179199223
               </div>
             ))
           )}
@@ -257,44 +209,20 @@ const CartSidebar = ({ isOpen, onClose }) => {
 
         {items.length > 0 && (
           <div className={styles.cartFooter}>
-<<<<<<< HEAD
-            {/* Promo kod */}
-            <div className={styles.promoSection}>
-              <input 
-                type="text" 
-                placeholder="Promo kodni kiriting" 
-                className={styles.promoInput}
-              />
-              <button className={styles.applyPromoBtn}>
-                Qo'llash
-              </button>
-=======
-            <div className={styles.cartTotal}>
-              <span>{t('cart.total')}:</span>
-              <strong>{getCartTotal().toLocaleString()} {t('common.currency')}</strong>
-<<<<<<< HEAD
-=======
->>>>>>> df3ea054a634e94ed96bee55b159d0e179199223
->>>>>>> feature/product-detail
-            </div>
-
-            {/* Umumiy summa */}
             <div className={styles.cartTotal}>
               <div className={styles.totalRow}>
-                <span>Mahsulotlar:</span>
-                <span>{getCartTotal().toLocaleString()} so'm</span>
+                <span>{t('cart.products') || 'Mahsulotlar'}:</span>
+                <span>{getCartTotal().toLocaleString()} {t('common.currency') || 'so\'m'}</span>
               </div>
               <div className={styles.totalRow}>
-                <span>Yetkazish:</span>
-                <span className={styles.freeDelivery}>Bepul</span>
+                <span>{t('cart.delivery') || 'Yetkazish'}:</span>
+                <span className={styles.freeDelivery}>{t('cart.freeDelivery') || 'Bepul'}</span>
               </div>
               <div className={styles.finalTotal}>
-                <span>Jami:</span>
-                <strong>{getCartTotal().toLocaleString()} so'm</strong>
+                <span>{t('cart.total') || 'Jami'}:</span>
+                <strong>{getCartTotal().toLocaleString()} {t('common.currency') || 'so\'m'}</strong>
               </div>
             </div>
-            
-            {/* Harakat tugmalari */}
             <div className={styles.cartActions}>
               <button className={styles.clearBtn} onClick={clearCart}>
                 {t('cart.clear')}
@@ -304,16 +232,14 @@ const CartSidebar = ({ isOpen, onClose }) => {
                 {t('cart.checkout')}
               </button>
             </div>
-
-            {/* Qo'shimcha ma'lumotlar */}
             <div className={styles.additionalInfo}>
               <div className={styles.securePayment}>
                 <i className="fas fa-shield-alt"></i>
-                <span>Xavfsiz to'lov</span>
+                <span>{t('cart.securePayment') || "Xavfsiz to'lov"}</span>
               </div>
               <div className={styles.returnPolicy}>
                 <i className="fas fa-undo"></i>
-                <span>Qaytarish 10 kun</span>
+                <span>{t('cart.returnPolicy') || 'Qaytarish 10 kun'}</span>
               </div>
             </div>
           </div>

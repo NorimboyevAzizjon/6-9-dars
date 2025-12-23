@@ -4,9 +4,12 @@ import App from './App.jsx'
 import './i18next'  
 import './index.css'
 import './i18next.js';
+import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </React.StrictMode>,
 )
