@@ -14,9 +14,11 @@ import SuccessPage from './pages/SuccessPage';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 
+
 function PrivateRoute({ children }) {
-  const { isAuthenticated } = useAuth();
-  return isAuthenticated ? children : <Navigate to="/" replace />;
+  const { isAuthenticated, loading } = useAuth();
+  if (loading) return null;
+  return isAuthenticated ? children : <Navigate to="/login" replace />;
 }
 
 function App() {
@@ -36,7 +38,7 @@ function App() {
   };
 
 
-  const isLoggedIn = true; // yoki contextdan oling
+
 
   return (
     <AuthProvider>
@@ -51,10 +53,22 @@ function App() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/product/:id" element={<ProductDetailPage />} />
-              <Route path="/cart" element={<CartPage />} />
+              <Route path="/cart" element={
+                <PrivateRoute>
+                  <CartPage />
+                </PrivateRoute>
+              } />
               <Route path="/login" element={<LoginPage />} />
-              <Route path="/success" element={<SuccessPage />} />
-              <Route path="/admin" element={<AdminDashboard isLoggedIn={isLoggedIn} />} />
+              <Route path="/success" element={
+                <PrivateRoute>
+                  <SuccessPage />
+                </PrivateRoute>
+              } />
+              <Route path="/admin" element={
+                <PrivateRoute>
+                  <AdminDashboard />
+                </PrivateRoute>
+              } />
               <Route path="*" element={<HomePage />} />
             </Routes>
           </main>

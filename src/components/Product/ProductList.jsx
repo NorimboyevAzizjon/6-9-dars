@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ProductCard from './ProductCard';
-import { supabase } from '../../supabaseClient';
+import { supabase } from '../../lib/supabase';
 import styles from './ProductList.module.css';
 
 const ProductList = ({ onToggleFavorite, favorites, onProductsLoaded }) => {

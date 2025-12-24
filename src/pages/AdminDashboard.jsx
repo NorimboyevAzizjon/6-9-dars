@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-import { supabase } from "../supabaseClient";
+import { supabase } from "../lib/supabase";
 import styles from "./AdminDashboard.module.css";
 
-const AdminDashboard = ({ isLoggedIn }) => {
+import { useAuth } from "../context/AuthContext";
+
+const AdminDashboard = () => {
+  const { isAuthenticated } = useAuth();
   const [form, setForm] = useState({
     name: "",
     price: "",
@@ -12,14 +15,17 @@ const AdminDashboard = ({ isLoggedIn }) => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
-  if (!isLoggedIn) {
+  // Faqat login qilingan foydalanuvchilar uchun
+  if (!isAuthenticated) {
     return <div>Faqat login qilingan foydalanuvchilar uchun!</div>;
   }
 
+  // Forma qiymatlarini o‘zgartirish
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  // Formani yuborish va Supabase-ga saqlash
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
