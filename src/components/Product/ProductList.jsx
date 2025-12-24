@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ProductCard from './ProductCard';
-import { supabase } from '../../lib/supabase';
+import { products as localProducts } from '../../data/products';
 import styles from './ProductList.module.css';
 
 const ProductList = ({ onToggleFavorite, favorites, onProductsLoaded }) => {
@@ -9,15 +9,14 @@ const ProductList = ({ onToggleFavorite, favorites, onProductsLoaded }) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      setIsLoading(true);
-      setError(null);
-      const { data, error } = await supabase.from('products').select('*');
-      if (error) setError(error.message);
-      else setProducts(data || []);
-      setIsLoading(false);
-    };
-    fetchProducts();
+    setIsLoading(true);
+    setError(null);
+    try {
+      setProducts(localProducts || []);
+    } catch (err) {
+      setError('Mahsulotlarni olishda xatolik: ' + (err.message || '')); 
+    }
+    setIsLoading(false);
   }, []);
 
   const formattedProducts = products?.map(product => ({

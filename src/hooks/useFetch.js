@@ -1,5 +1,6 @@
+
 import { useReducer, useEffect } from 'react';
-import axios from 'axios';
+import { products } from '../data/products';
 
 const initialState = {
     data: [],
@@ -21,24 +22,20 @@ function reducer(state, action) {
     }
 }
 
-export const useFetch = (url) => {
+
+export const useFetch = () => {
     const [state, dispatch] = useReducer(reducer, initialState);
 
     useEffect(() => {
-        const fetchData = async () => {
-            dispatch({ type: 'LOADING', payload: true });
-            try {
-                const response = await axios.get(url);
-                dispatch({ type: 'DATA', payload: response.data.products });
-            } catch (err) {
-                dispatch({ type: 'ERROR', payload: err.message || "Xatolik yuz berdi" });
-            } finally {
-                dispatch({ type: 'LOADING', payload: false });
-            }
-        };
-
-        fetchData();
-    }, [url]);
+        dispatch({ type: 'LOADING', payload: true });
+        try {
+            dispatch({ type: 'DATA', payload: products });
+        } catch (err) {
+            dispatch({ type: 'ERROR', payload: err.message || "Xatolik yuz berdi" });
+        } finally {
+            dispatch({ type: 'LOADING', payload: false });
+        }
+    }, []);
 
     return state;
 };

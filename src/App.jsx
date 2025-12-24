@@ -39,7 +39,7 @@ function App() {
 
 
 
-
+  
   return (
     <AuthProvider>
       <CartProvider>
