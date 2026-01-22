@@ -2,11 +2,15 @@ import { Link } from 'react-router-dom'
 import { Card, CardContent, CardFooter } from './ui/card'
 import { Button } from './ui/button'
 import { Badge } from './ui/badge'
-import { ShoppingCart, Star } from 'lucide-react'
+import { ShoppingCart, Star, Plus, Minus } from 'lucide-react'
 import { useCart } from '../context/CartContext'
 
 const ProductCard = ({ product }) => {
-  const { addToCart } = useCart()
+  const { cartItems, addToCart, updateQuantity, removeFromCart } = useCart()
+  
+  // Savatchadagi mahsulot miqdorini topish
+  const cartItem = cartItems.find(item => item.id === product.id)
+  const quantity = cartItem ? cartItem.quantity : 0
 
   return (
     <Card className="overflow-hidden hover:shadow-lg transition-shadow">
@@ -20,6 +24,11 @@ const ProductCard = ({ product }) => {
           {product.category && (
             <Badge className="absolute top-2 left-2 text-xs">
               {product.category}
+            </Badge>
+          )}
+          {quantity > 0 && (
+            <Badge className="absolute top-2 right-2 bg-green-500">
+              {quantity} ta
             </Badge>
           )}
         </div>
@@ -49,13 +58,37 @@ const ProductCard = ({ product }) => {
       </CardContent>
       
       <CardFooter className="p-4 pt-0">
-        <Button 
-          className="w-full"
-          onClick={() => addToCart(product)}
-        >
-          <ShoppingCart className="mr-2 h-4 w-4" />
-          Savatchaga
-        </Button>
+        {quantity === 0 ? (
+          <Button 
+            className="w-full"
+            onClick={() => addToCart(product)}
+          >
+            <ShoppingCart className="mr-2 h-4 w-4" />
+            Savatchaga
+          </Button>
+        ) : (
+          <div className="flex items-center justify-between w-full gap-2">
+            <Button 
+              variant="outline" 
+              size="icon"
+              onClick={() => quantity === 1 ? removeFromCart(product.id) : updateQuantity(product.id, quantity - 1)}
+            >
+              <Minus className="h-4 w-4" />
+            </Button>
+            
+            <span className="font-bold text-lg flex-1 text-center">
+              {quantity}
+            </span>
+            
+            <Button 
+              variant="outline" 
+              size="icon"
+              onClick={() => updateQuantity(product.id, quantity + 1)}
+            >
+              <Plus className="h-4 w-4" />
+            </Button>
+          </div>
+        )}
       </CardFooter>
     </Card>
   )
