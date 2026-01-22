@@ -3,11 +3,13 @@ import { Button } from './ui/button'
 import { Badge } from './ui/badge'
 import { useAuth } from '../context/AuthContext'
 import { useCart } from '../context/CartContext'
-import { ShoppingCart, User, LogOut, Package } from 'lucide-react'
+import { useFavorites } from '../context/FavoritesContext'
+import { ShoppingCart, User, LogOut, Package, Heart } from 'lucide-react'
 
 const Header = () => {
   const { user, logout, isAdmin } = useAuth()
   const { getTotalItems } = useCart()
+  const { getFavoritesCount } = useFavorites()
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -29,7 +31,22 @@ const Header = () => {
           </nav>
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
+          {/* Sevimlilar */}
+          <Link to="/favorites" className="relative">
+            <Button variant="outline" size="icon">
+              <Heart className="h-4 w-4" />
+              {getFavoritesCount() > 0 && (
+                <Badge 
+                  className="absolute -top-2 -right-2 h-5 w-5 p-0 flex items-center justify-center text-xs bg-red-500"
+                >
+                  {getFavoritesCount()}
+                </Badge>
+              )}
+            </Button>
+          </Link>
+          
+          {/* Savatcha */}
           <Link to="/cart" className="relative">
             <Button variant="outline" size="icon">
               <ShoppingCart className="h-4 w-4" />

@@ -2,37 +2,61 @@ import { Link } from 'react-router-dom'
 import { Card, CardContent, CardFooter } from './ui/card'
 import { Button } from './ui/button'
 import { Badge } from './ui/badge'
-import { ShoppingCart, Star, Plus, Minus } from 'lucide-react'
+import { ShoppingCart, Star, Plus, Minus, Heart } from 'lucide-react'
 import { useCart } from '../context/CartContext'
+import { useFavorites } from '../context/FavoritesContext'
 
 const ProductCard = ({ product }) => {
   const { cartItems, addToCart, updateQuantity, removeFromCart } = useCart()
+  const { isFavorite, toggleFavorite } = useFavorites()
   
   // Savatchadagi mahsulot miqdorini topish
   const cartItem = cartItems.find(item => item.id === product.id)
   const quantity = cartItem ? cartItem.quantity : 0
+  const favorite = isFavorite(product.id)
 
   return (
     <Card className="overflow-hidden hover:shadow-lg transition-shadow">
-      <Link to={`/product/${product.id}`}>
-        <div className="aspect-square overflow-hidden relative">
-          <img
-            src={product.image_url || 'https://via.placeholder.com/300x300'}
-            alt={product.name}
-            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+      <div className="relative">
+        <Link to={`/product/${product.id}`}>
+          <div className="aspect-square overflow-hidden">
+            <img
+              src={product.image_url || 'https://via.placeholder.com/300x300'}
+              alt={product.name}
+              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+        </Link>
+        
+        {/* Badges va Yurakcha */}
+        {product.category && (
+          <Badge className="absolute top-2 left-2 text-xs">
+            {product.category}
+          </Badge>
+        )}
+        {quantity > 0 && (
+          <Badge className="absolute top-10 left-2 bg-green-500">
+            {quantity} ta
+          </Badge>
+        )}
+        
+        {/* Yurakcha tugmasi */}
+        <button
+          onClick={(e) => {
+            e.preventDefault()
+            toggleFavorite(product)
+          }}
+          className="absolute top-2 right-2 p-2 rounded-full bg-white/80 hover:bg-white transition-colors shadow-sm"
+        >
+          <Heart 
+            className={`h-5 w-5 transition-colors ${
+              favorite 
+                ? 'fill-red-500 text-red-500' 
+                : 'text-gray-400 hover:text-red-500'
+            }`} 
           />
-          {product.category && (
-            <Badge className="absolute top-2 left-2 text-xs">
-              {product.category}
-            </Badge>
-          )}
-          {quantity > 0 && (
-            <Badge className="absolute top-2 right-2 bg-green-500">
-              {quantity} ta
-            </Badge>
-          )}
-        </div>
-      </Link>
+        </button>
+      </div>
       
       <CardContent className="p-4">
         <Link to={`/product/${product.id}`}>
