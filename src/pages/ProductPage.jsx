@@ -300,57 +300,7 @@ const ProductPage = () => {
               </div>
             )}
 
-            {/* Share buttons */}
-            <Card className="p-4 rounded-2xl border-0 shadow-sm bg-white">
-              <p className="text-sm font-medium mb-3 flex items-center gap-2">
-                <Share2 className="h-4 w-4" />
-                Ulashish
-              </p>
-              <div className="flex gap-2 flex-wrap">
-                <Button 
-                  variant="outline" 
-                  size="sm" 
-                  className="rounded-full"
-                  onClick={copyLink}
-                >
-                  {copied ? <Check className="h-4 w-4 mr-1" /> : <Copy className="h-4 w-4 mr-1" />}
-                  {copied ? 'Nusxalandi!' : 'Linkni nusxalash'}
-                </Button>
-                <Button 
-                  variant="outline" 
-                  size="sm" 
-                  className="rounded-full bg-green-50 border-green-200 text-green-600 hover:bg-green-100"
-                  onClick={() => window.open(`https://t.me/share/url?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(product.name)}`, '_blank')}
-                >
-                  <MessageCircle className="h-4 w-4 mr-1" />
-                  Telegram
-                </Button>
-              </div>
-            </Card>
 
-            {/* Features */}
-            <Card className="p-4 rounded-2xl border-0 shadow-sm bg-white">
-              <div className="grid grid-cols-3 gap-4">
-                <div className="text-center p-3">
-                  <div className="w-12 h-12 mx-auto mb-2 rounded-full bg-green-100 flex items-center justify-center">
-                    <Truck className="h-6 w-6 text-green-600" />
-                  </div>
-                  <p className="text-xs text-muted-foreground">Bepul yetkazish</p>
-                </div>
-                <div className="text-center p-3">
-                  <div className="w-12 h-12 mx-auto mb-2 rounded-full bg-blue-100 flex items-center justify-center">
-                    <Shield className="h-6 w-6 text-blue-600" />
-                  </div>
-                  <p className="text-xs text-muted-foreground">Kafolat</p>
-                </div>
-                <div className="text-center p-3">
-                  <div className="w-12 h-12 mx-auto mb-2 rounded-full bg-purple-100 flex items-center justify-center">
-                    <RotateCcw className="h-6 w-6 text-purple-600" />
-                  </div>
-                  <p className="text-xs text-muted-foreground">14 kun qaytarish</p>
-                </div>
-              </div>
-            </Card>
           </div>
           
           {/* Right side - Product Info */}
@@ -502,65 +452,7 @@ const ProductPage = () => {
               </div>
             </Card>
 
-            {/* Services */}
-            <Card className="p-6 rounded-2xl border-0 shadow-sm bg-white">
-              <h3 className="font-semibold mb-4 text-lg">Xizmatlar</h3>
-              <div className="grid grid-cols-2 gap-3">
-                <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
-                  <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
-                    <CreditCard className="h-5 w-5 text-blue-600" />
-                  </div>
-                  <div>
-                    <p className="font-medium text-sm">Onlayn to'lov</p>
-                    <p className="text-xs text-muted-foreground">Payme, Click</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
-                  <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
-                    <Clock className="h-5 w-5 text-green-600" />
-                  </div>
-                  <div>
-                    <p className="font-medium text-sm">Tez yetkazish</p>
-                    <p className="text-xs text-muted-foreground">1-3 kun</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
-                  <div className="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0">
-                    <Award className="h-5 w-5 text-purple-600" />
-                  </div>
-                  <div>
-                    <p className="font-medium text-sm">Sifat kafolati</p>
-                    <p className="text-xs text-muted-foreground">100% original</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
-                  <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center flex-shrink-0">
-                    <Headphones className="h-5 w-5 text-orange-600" />
-                  </div>
-                  <div>
-                    <p className="font-medium text-sm">24/7 yordam</p>
-                    <p className="text-xs text-muted-foreground">Har doim aloqada</p>
-                  </div>
-                </div>
-              </div>
-            </Card>
 
-            {/* Contact */}
-            <Card className="p-6 rounded-2xl border-0 shadow-sm bg-gradient-to-r from-green-50 to-emerald-50 border-green-200">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="font-semibold text-lg">Savollaringiz bormi?</p>
-                  <p className="text-muted-foreground text-sm">Biz sizga yordam beramiz</p>
-                </div>
-                <Button 
-                  className="bg-green-500 hover:bg-green-600 text-white rounded-xl"
-                  onClick={() => window.open('tel:+998901234567', '_self')}
-                >
-                  <Phone className="h-5 w-5 mr-2" />
-                  Qo'ng'iroq
-                </Button>
-              </div>
-            </Card>
           </div>
         </div>
 
