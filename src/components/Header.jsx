@@ -25,12 +25,12 @@ const Header = () => {
   }
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur-lg supports-[backdrop-filter]:bg-white/60 shadow-sm">
+    <header className="sticky top-0 z-50 w-full border-b bg-white/90 backdrop-blur-lg supports-[backdrop-filter]:bg-white/80 shadow-sm">
       <div className="container mx-auto flex h-16 items-center justify-between px-4 gap-4">
         {/* Logo */}
         <div className="flex items-center gap-4 flex-shrink-0">
           <Link to="/" className="flex items-center gap-2 text-xl font-bold group">
-            <div className="p-2 rounded-xl bg-gradient-to-br from-primary to-purple-600 text-white group-hover:shadow-lg group-hover:shadow-primary/25 transition-all duration-300">
+            <div className="p-2 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 text-white group-hover:shadow-lg group-hover:shadow-blue-500/25 transition-all duration-300">
               <Store className="h-5 w-5" />
             </div>
             <span className="gradient-text hidden lg:inline">TechStore</span>
@@ -45,12 +45,12 @@ const Header = () => {
               placeholder="Mahsulot qidirish..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-24 h-10 rounded-full border-gray-200 focus:border-primary focus:ring-primary bg-gray-50"
+              className="w-full pl-10 pr-24 h-10 rounded-full border-gray-200 focus:border-blue-500 focus:ring-blue-500 bg-gray-50/80"
             />
             <Button 
               type="submit" 
               size="sm"
-              className="absolute right-1 top-1/2 -translate-y-1/2 rounded-full px-4 h-8 bg-gradient-to-r from-primary to-purple-600"
+              className="absolute right-1 top-1/2 -translate-y-1/2 rounded-full px-4 h-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
             >
               Qidirish
             </Button>

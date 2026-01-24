@@ -366,7 +366,7 @@ const ProductPage = () => {
             <div className="space-y-4">
               {quantity === 0 ? (
                 <Button 
-                  className="w-full py-7 text-lg rounded-2xl bg-gradient-to-r from-primary to-purple-600 hover:shadow-xl hover:shadow-primary/25 transition-all"
+                  className="w-full py-7 text-lg rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 hover:shadow-xl hover:shadow-blue-500/25 transition-all"
                   onClick={handleAddToCart}
                   disabled={product.stock === 0}
                 >

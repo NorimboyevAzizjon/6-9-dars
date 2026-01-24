@@ -54,7 +54,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="space-y-4">
             <Link to="/" className="flex items-center gap-2 text-xl font-bold">
-              <div className="p-2 rounded-xl bg-gradient-to-br from-primary to-purple-600 text-white shadow-lg shadow-primary/25">
+              <div className="p-2 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-500/25">
                 <Store className="h-5 w-5" />
               </div>
               <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">TechStore</span>
