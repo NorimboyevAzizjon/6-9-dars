@@ -4,8 +4,8 @@ import { Button } from '../components/ui/button'
 import { Input, Textarea } from '../components/ui/input'
 import { Label } from '../components/ui/label'
 import { Alert, AlertDescription } from '../components/ui/alert'
-import { getProducts, addProduct, deleteProduct } from '../lib/api'
-import { Package, Plus, Trash2, Edit, RefreshCw } from 'lucide-react'
+import { getProducts, addProduct, deleteProduct, updateProduct } from '../lib/api'
+import { Package, Plus, Trash2, Edit, RefreshCw, X } from 'lucide-react'
 
 const AdminDashboard = () => {
   const [products, setProducts] = useState([])
@@ -19,6 +19,7 @@ const AdminDashboard = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
+  const [editingId, setEditingId] = useState(null)
 
   useEffect(() => {
     loadProducts()
@@ -47,14 +48,22 @@ const AdminDashboard = () => {
     setLoading(true)
 
     try {
-      const productToAdd = {
+      const productData = {
         ...formData,
         price: parseFloat(formData.price)
       }
 
-      await addProduct(productToAdd)
+      if (editingId) {
+        // Tahrirlash
+        await updateProduct(editingId, productData)
+        setSuccess('Mahsulot muvaffaqiyatli yangilandi!')
+        setEditingId(null)
+      } else {
+        // Yangi qo'shish
+        await addProduct(productData)
+        setSuccess('Mahsulot muvaffaqiyatli qo\'shildi!')
+      }
       
-      setSuccess('Mahsulot muvaffaqiyatli qo\'shildi!')
       setFormData({
         name: '',
         category: '',
@@ -63,15 +72,14 @@ const AdminDashboard = () => {
         description: ''
       })
       
-      // Yangi mahsulotlar ro'yxatini yangilash
+      // Mahsulotlar ro'yxatini yangilash
       await loadProducts()
     } catch (err) {
-      setError('Mahsulot qo\'shishda xatolik: ' + err.message)
+      setError((editingId ? 'Yangilashda' : 'Qo\'shishda') + ' xatolik: ' + err.message)
     } finally {
       setLoading(false)
     }
   }
-
   const handleDeleteProduct = async (id, name) => {
     if (!window.confirm(`"${name}" mahsulotini o'chirmoqchimisiz?`)) {
       return
@@ -83,13 +91,39 @@ const AdminDashboard = () => {
     
     try {
       await deleteProduct(id)
-      setSuccess(`"${name}" mahsuloti o'chirildi (Demo API - haqiqatda o'chirilmaydi)`)
-      // Demo API da haqiqatda o'chirilmaydi, lekin muvaffaqiyat xabarini ko'rsatamiz
+      setSuccess(`"${name}" mahsuloti o'chirildi!`)
+      // Ro'yxatni yangilash
+      await loadProducts()
     } catch (err) {
       setError('O\'chirishda xatolik: ' + err.message)
     } finally {
       setLoading(false)
     }
+  }
+
+  const handleEditProduct = (product) => {
+    // Formani mahsulot ma'lumotlari bilan to'ldirish
+    setFormData({
+      name: product.name,
+      category: product.category,
+      price: String(product.price),
+      image_url: product.image_url || '',
+      description: product.description || ''
+    })
+    setEditingId(product.id)
+    // Formaga scroll qilish
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  const handleCancelEdit = () => {
+    setFormData({
+      name: '',
+      category: '',
+      price: '',
+      image_url: '',
+      description: ''
+    })
+    setEditingId(null)
   }
 
   const handleRefresh = async () => {
@@ -154,7 +188,7 @@ const AdminDashboard = () => {
                     </thead>
                     <tbody>
                       {products.map(product => (
-                        <tr key={product.id} className="border-b last:border-0">
+                        <tr key={product.id} className={`border-b last:border-0 ${editingId === product.id ? 'bg-blue-50' : ''}`}>
                           <td className="py-4">
                             <img
                               src={product.image_url || 'https://via.placeholder.com/50x50'}
@@ -169,7 +203,13 @@ const AdminDashboard = () => {
                           </td>
                           <td className="py-4">
                             <div className="flex justify-end gap-2">
-                              <Button variant="ghost" size="icon">
+                              <Button 
+                                variant="ghost" 
+                                size="icon"
+                                className="text-blue-500 hover:text-blue-700 hover:bg-blue-50"
+                                onClick={() => handleEditProduct(product)}
+                                disabled={loading}
+                              >
                                 <Edit className="h-4 w-4" />
                               </Button>
                               <Button 
@@ -194,11 +234,24 @@ const AdminDashboard = () => {
         </div>
 
         <div>
-          <Card>
+          <Card className={editingId ? 'ring-2 ring-blue-500' : ''}>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Plus className="h-5 w-5" />
-                Yangi mahsulot
+              <CardTitle className="flex items-center justify-between">
+                <span className="flex items-center gap-2">
+                  {editingId ? <Edit className="h-5 w-5 text-blue-500" /> : <Plus className="h-5 w-5" />}
+                  {editingId ? 'Mahsulotni tahrirlash' : 'Yangi mahsulot'}
+                </span>
+                {editingId && (
+                  <Button 
+                    variant="ghost" 
+                    size="sm"
+                    onClick={handleCancelEdit}
+                    className="text-gray-500"
+                  >
+                    <X className="h-4 w-4 mr-1" />
+                    Bekor qilish
+                  </Button>
+                )}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -278,10 +331,13 @@ const AdminDashboard = () => {
 
                 <Button 
                   type="submit" 
-                  className="w-full" 
+                  className={`w-full ${editingId ? 'bg-blue-600 hover:bg-blue-700' : ''}`}
                   disabled={loading}
                 >
-                  {loading ? 'Qo\'shilmoqda...' : 'Mahsulot qo\'shish'}
+                  {loading 
+                    ? (editingId ? 'Saqlanmoqda...' : 'Qo\'shilmoqda...') 
+                    : (editingId ? 'Saqlash' : 'Mahsulot qo\'shish')
+                  }
                 </Button>
               </form>
             </CardContent>
