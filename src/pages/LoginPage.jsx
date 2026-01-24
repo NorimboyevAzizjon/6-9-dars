@@ -113,21 +113,6 @@ const LoginPage = () => {
                 </div>
               </div>
               
-              {/* Demo credentials */}
-              <div className="p-4 rounded-xl bg-blue-50 border border-blue-100">
-                <p className="text-sm font-semibold text-blue-700 mb-2">Demo hisob:</p>
-                <div className="flex flex-col gap-1.5 text-sm">
-                  <div className="flex items-center gap-2">
-                    <Mail className="h-4 w-4 text-blue-500" />
-                    <span className="text-gray-700 font-medium">admin@example.com</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Lock className="h-4 w-4 text-blue-500" />
-                    <span className="text-gray-700 font-medium">Admin123</span>
-                  </div>
-                </div>
-              </div>
-              
               <Button 
                 type="submit" 
                 className="w-full h-12 rounded-xl bg-gradient-to-r from-primary to-purple-600 hover:shadow-lg hover:shadow-primary/25 transition-all text-base font-semibold" 

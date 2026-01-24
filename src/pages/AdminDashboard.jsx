@@ -143,24 +143,11 @@ const AdminDashboard = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="mb-8 flex justify-between items-start">
-        <div>
-          <h1 className="text-3xl font-bold flex items-center gap-3">
-            <Package className="h-8 w-8" />
-            Admin Dashboard
-          </h1>
-          <p className="text-muted-foreground">
-            Mahsulotlarni boshqarish paneli (DummyJSON API)
-          </p>
-        </div>
-        <Button 
-          variant="outline" 
-          onClick={handleRefresh}
-          disabled={loading}
-        >
-          <RefreshCw className={`h-4 w-4 mr-2 ${loading ? 'animate-spin' : ''}`} />
-          Yangilash
-        </Button>
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold flex items-center gap-3">
+          <Package className="h-8 w-8" />
+          Admin Dashboard
+        </h1>
       </div>
 
       <div className="grid lg:grid-cols-3 gap-8">
