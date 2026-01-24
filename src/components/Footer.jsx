@@ -1,54 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Store, Facebook, Instagram, Send, Phone, Mail, MapPin, Heart, ShoppingBag, Sparkles, CreditCard, Truck, Shield, Clock } from 'lucide-react'
+import { Store, Facebook, Instagram, Send, Phone, Mail, MapPin, Heart, ShoppingBag, Sparkles } from 'lucide-react'
 
 const Footer = () => {
   return (
     <footer className="border-t bg-gradient-to-b from-gray-900 to-gray-950 text-white mt-auto">
-      {/* Top Features Bar */}
-      <div className="border-b border-gray-800">
-        <div className="container mx-auto px-4 py-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="flex items-center gap-3 p-3 rounded-xl bg-gray-800/50">
-              <div className="p-2 rounded-lg bg-green-500/20">
-                <Truck className="h-5 w-5 text-green-400" />
-              </div>
-              <div>
-                <p className="font-medium text-sm">Bepul yetkazish</p>
-                <p className="text-xs text-gray-400">100,000+ buyurtmalar</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3 p-3 rounded-xl bg-gray-800/50">
-              <div className="p-2 rounded-lg bg-blue-500/20">
-                <CreditCard className="h-5 w-5 text-blue-400" />
-              </div>
-              <div>
-                <p className="font-medium text-sm">Xavfsiz to'lov</p>
-                <p className="text-xs text-gray-400">Payme, Click, Uzum</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3 p-3 rounded-xl bg-gray-800/50">
-              <div className="p-2 rounded-lg bg-purple-500/20">
-                <Shield className="h-5 w-5 text-purple-400" />
-              </div>
-              <div>
-                <p className="font-medium text-sm">Kafolat</p>
-                <p className="text-xs text-gray-400">1 yillik kafolat</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3 p-3 rounded-xl bg-gray-800/50">
-              <div className="p-2 rounded-lg bg-orange-500/20">
-                <Clock className="h-5 w-5 text-orange-400" />
-              </div>
-              <div>
-                <p className="font-medium text-sm">24/7 Qo'llab-quvvatlash</p>
-                <p className="text-xs text-gray-400">Har doim aloqada</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
