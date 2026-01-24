@@ -181,69 +181,6 @@ const AdminDashboard = () => {
       </div>
 
       <div className="container mx-auto px-4 py-6">
-        {/* Stats Cards */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-          <Card className="border-0 shadow-sm hover:shadow-md transition-shadow bg-gradient-to-br from-blue-500 to-blue-600 text-white overflow-hidden relative">
-            <div className="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-full -mr-10 -mt-10" />
-            <CardContent className="p-4">
-              <div className="flex items-center justify-between relative z-10">
-                <div>
-                  <p className="text-blue-100 text-xs font-medium">Jami mahsulotlar</p>
-                  <p className="text-2xl font-bold mt-1">{totalProducts}</p>
-                </div>
-                <div className="p-2 bg-white/20 rounded-lg">
-                  <ShoppingBag className="h-5 w-5" />
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-          
-          <Card className="border-0 shadow-sm hover:shadow-md transition-shadow bg-gradient-to-br from-emerald-500 to-emerald-600 text-white overflow-hidden relative">
-            <div className="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-full -mr-10 -mt-10" />
-            <CardContent className="p-4">
-              <div className="flex items-center justify-between relative z-10">
-                <div>
-                  <p className="text-emerald-100 text-xs font-medium">Jami qiymat</p>
-                  <p className="text-xl font-bold mt-1">{(totalValue / 1000000).toFixed(1)}M</p>
-                </div>
-                <div className="p-2 bg-white/20 rounded-lg">
-                  <DollarSign className="h-5 w-5" />
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-          
-          <Card className="border-0 shadow-sm hover:shadow-md transition-shadow bg-gradient-to-br from-violet-500 to-violet-600 text-white overflow-hidden relative">
-            <div className="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-full -mr-10 -mt-10" />
-            <CardContent className="p-4">
-              <div className="flex items-center justify-between relative z-10">
-                <div>
-                  <p className="text-violet-100 text-xs font-medium">Kategoriyalar</p>
-                  <p className="text-2xl font-bold mt-1">{categories.length}</p>
-                </div>
-                <div className="p-2 bg-white/20 rounded-lg">
-                  <LayoutGrid className="h-5 w-5" />
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-          
-          <Card className="border-0 shadow-sm hover:shadow-md transition-shadow bg-gradient-to-br from-amber-500 to-orange-500 text-white overflow-hidden relative">
-            <div className="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-full -mr-10 -mt-10" />
-            <CardContent className="p-4">
-              <div className="flex items-center justify-between relative z-10">
-                <div>
-                  <p className="text-amber-100 text-xs font-medium">O'rtacha narx</p>
-                  <p className="text-xl font-bold mt-1">{(avgPrice / 1000).toFixed(0)}K</p>
-                </div>
-                <div className="p-2 bg-white/20 rounded-lg">
-                  <TrendingUp className="h-5 w-5" />
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
         {/* Alerts */}
         {error && (
           <Alert variant="destructive" className="mb-4 rounded-xl border-red-200 bg-red-50">
