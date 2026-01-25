@@ -90,13 +90,11 @@ const Header = () => {
           <Link to="/cart" className="relative group">
             <Button variant="ghost" size="icon" className="rounded-full hover:bg-primary/10 hover:text-primary transition-colors">
               <ShoppingCart className="h-5 w-5" />
-              {getTotalItems() > 0 && (
-                <Badge 
-                  className="absolute -top-1 -right-1 h-5 w-5 p-0 flex items-center justify-center text-xs bg-primary border-2 border-white pulse-badge"
-                >
-                  {getTotalItems()}
-                </Badge>
-              )}
+              <Badge 
+                className="absolute -top-1 -right-1 h-5 w-5 p-0 flex items-center justify-center text-xs bg-blue-600 border-2 border-white"
+              >
+                {getTotalItems()}
+              </Badge>
             </Button>
           </Link>
 
