@@ -200,29 +200,11 @@ const AdminDashboard = () => {
           {/* Products List */}
           <div className="lg:col-span-2">
             <Card className="border-0 shadow-sm rounded-2xl overflow-hidden">
-              <CardHeader className="flex flex-row items-center justify-between pb-2 bg-gray-50/50">
+              <CardHeader className="pb-2 bg-gray-50/50">
                 <CardTitle className="text-base font-semibold">
                   Mahsulotlar 
                   <Badge variant="secondary" className="ml-2 rounded-full">{filteredProducts.length}</Badge>
                 </CardTitle>
-                <div className="flex gap-1 bg-gray-100 p-1 rounded-lg">
-                  <Button 
-                    variant={viewMode === 'table' ? 'default' : 'ghost'} 
-                    size="icon"
-                    className={`h-7 w-7 ${viewMode === 'table' ? 'bg-white shadow-sm' : ''}`}
-                    onClick={() => setViewMode('table')}
-                  >
-                    <List className="h-3.5 w-3.5" />
-                  </Button>
-                  <Button 
-                    variant={viewMode === 'grid' ? 'default' : 'ghost'} 
-                    size="icon"
-                    className={`h-7 w-7 ${viewMode === 'grid' ? 'bg-white shadow-sm' : ''}`}
-                    onClick={() => setViewMode('grid')}
-                  >
-                    <LayoutGrid className="h-3.5 w-3.5" />
-                  </Button>
-                </div>
               </CardHeader>
               <CardContent className="p-0">
                 {loading && products.length === 0 ? (
