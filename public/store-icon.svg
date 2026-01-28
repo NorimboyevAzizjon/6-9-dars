@@ -1,15 +1,24 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
-  <!-- Shopping bag -->
-  <rect x="12" y="20" width="40" height="38" rx="4" fill="#3B82F6" stroke="#1D4ED8" stroke-width="2"/>
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10B981"/>
+      <stop offset="100%" style="stop-color:#059669"/>
+    </linearGradient>
+  </defs>
   
-  <!-- Bag handles -->
-  <path d="M22 20V14C22 8.477 26.477 4 32 4C37.523 4 42 8.477 42 14V20" stroke="#1D4ED8" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <!-- Background rounded square -->
+  <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#bgGrad)"/>
   
-  <!-- Shopping cart icon inside -->
-  <circle cx="26" cy="48" r="3" fill="#FCD34D"/>
-  <circle cx="38" cy="48" r="3" fill="#FCD34D"/>
-  <path d="M20 30H44L40 42H24L20 30Z" fill="#FCD34D" stroke="#F59E0B" stroke-width="1.5"/>
+  <!-- Shopping cart -->
+  <path d="M16 22H20L26 40H44L48 28H23" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
   
-  <!-- Plus sign -->
-  <path d="M32 34V38M30 36H34" stroke="#1D4ED8" stroke-width="2" stroke-linecap="round"/>
+  <!-- Cart wheels -->
+  <circle cx="28" cy="46" r="3.5" fill="white"/>
+  <circle cx="42" cy="46" r="3.5" fill="white"/>
+  
+  <!-- Lightning bolt -->
+  <polygon points="38,14 30,32 35,32 31,42 42,26 37,26" fill="#FCD34D"/>
+  
+  <!-- Sparkle -->
+  <circle cx="50" cy="16" r="2.5" fill="white" opacity="0.8"/>
 </svg>

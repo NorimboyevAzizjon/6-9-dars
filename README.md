@@ -1,16 +1,89 @@
-# React + Vite
+# TechStore - Online Do'kon 🛒
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Zamonaviy texnologiyalar asosida qurilgan onlayn do'kon veb-sayti.
 
-Currently, two official plugins are available:
+## 🚀 Texnologiyalar
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React 18** - UI kutubxonasi
+- **Vite** - Build tool
+- **Tailwind CSS** - Styling
+- **Supabase** - Backend va Auth
+- **React Router** - Routing
+- **Lucide React** - Ikonkalar
 
-## React Compiler
+## 📋 Talablar
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Node.js 18+
+- npm yoki yarn
+- Supabase account
 
-## Expanding the ESLint configuration
+## 🛠️ O'rnatish
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. **Loyihani klonlash**
+```bash
+git clone https://github.com/NorimboyevAzizjon/TechStore.git
+cd TechStore
+```
+
+2. **Paketlarni o'rnatish**
+```bash
+npm install
+```
+
+3. **Supabase sozlash**
+
+   a. [Supabase](https://supabase.com) da yangi proyekt yarating
+   
+   b. SQL Editor'da `supabase-schema.sql` faylini ishga tushiring
+   
+   c. `.env` faylini yarating va sozlang:
+   ```env
+   VITE_SUPABASE_URL=your-supabase-url
+   VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
+   ```
+
+4. **Loyihani ishga tushirish**
+```bash
+npm run dev
+```
+
+## 📁 Loyiha tuzilishi
+
+```
+src/
+├── components/     # UI komponentlar
+│   └── ui/        # Shadcn komponentlari
+├── context/       # React Context (Auth, Cart, Favorites)
+├── lib/           # API va utility funksiyalar
+├── pages/         # Sahifalar
+└── assets/        # Statik fayllar
+```
+
+## 🔐 Funksiyalar
+
+### Foydalanuvchi autentifikatsiyasi
+- ✅ Supabase Auth orqali ro'yxatdan o'tish
+- ✅ Email/parol bilan kirish
+- ✅ Protected routes (Admin dashboard)
+
+### Sahifalar
+- ✅ **Homepage** - Barcha mahsulotlar ro'yxati
+- ✅ **Product Page** - Mahsulot batafsil ma'lumoti
+- ✅ **Cart Page** - Savatcha
+- ✅ **Success Page** - Xarid muvaffaqiyatli
+- ✅ **Admin Dashboard** - Mahsulot qo'shish
+
+### Qo'shimcha
+- ✅ Context API bilan savatcha boshqaruvi
+- ✅ localStorage da savatcha saqlanishi
+- ✅ Responsive dizayn
+- ✅ Sevimlilar ro'yxati
+
+## 👤 Admin kirish
+
+Admin dashboard'ga kirish uchun:
+- Email: `admin@example.com` bilan ro'yxatdan o'ting
+
+## 📝 License
+
+MIT

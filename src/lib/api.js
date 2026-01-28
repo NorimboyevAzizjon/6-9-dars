@@ -1,20 +1,36 @@
-// DummyJSON API bilan ishlash + localStorage
+// Supabase + DummyJSON API bilan ishlash
+import { supabase } from './supabase'
+
 const API_BASE_URL = 'https://dummyjson.com'
 
-// LocalStorage dan qo'shilgan mahsulotlarni olish
-const getLocalProducts = () => {
-  const stored = localStorage.getItem('custom_products')
-  return stored ? JSON.parse(stored) : []
+// Supabase'da mahsulotlar jadvalidan olish
+const getSupabaseProducts = async () => {
+  try {
+    const { data, error } = await supabase
+      .from('products')
+      .select('*')
+      .order('created_at', { ascending: false })
+    
+    if (error) throw error
+    return data || []
+  } catch (error) {
+    console.error('Supabase products error:', error)
+    return []
+  }
 }
 
-// LocalStorage ga mahsulot qo'shish
-const saveLocalProducts = (products) => {
-  localStorage.setItem('custom_products', JSON.stringify(products))
-}
-
-// Mahsulotlarni olish
+// Mahsulotlarni olish (Supabase + DummyJSON fallback)
 export const getProducts = async (limit = 30, skip = 0) => {
   try {
+    // Avval Supabase'dan olishga harakat qilamiz
+    const supabaseProducts = await getSupabaseProducts()
+    
+    // Agar Supabase'da mahsulotlar bo'lsa
+    if (supabaseProducts.length > 0) {
+      return supabaseProducts
+    }
+    
+    // Aks holda DummyJSON'dan olamiz
     const response = await fetch(`${API_BASE_URL}/products?limit=${limit}&skip=${skip}`)
     const data = await response.json()
     
@@ -34,19 +50,28 @@ export const getProducts = async (limit = 30, skip = 0) => {
       discountPercentage: product.discountPercentage
     }))
     
-    // LocalStorage dagi qo'shilgan mahsulotlarni ham qo'shamiz
-    const localProducts = getLocalProducts()
-    
-    return [...localProducts, ...apiProducts]
+    return apiProducts
   } catch (error) {
     console.error('Mahsulotlarni olishda xatolik:', error)
-    return getLocalProducts()
+    return []
   }
 }
 
 // Bitta mahsulotni olish
 export const getProductById = async (id) => {
   try {
+    // Supabase'dan qidirish
+    const { data: supabaseProduct } = await supabase
+      .from('products')
+      .select('*')
+      .eq('id', id)
+      .single()
+    
+    if (supabaseProduct) {
+      return supabaseProduct
+    }
+    
+    // DummyJSON'dan olish
     const response = await fetch(`${API_BASE_URL}/products/${id}`)
     const product = await response.json()
     
@@ -111,6 +136,17 @@ export const getCategories = async () => {
 // Mahsulotlarni qidirish
 export const searchProducts = async (query) => {
   try {
+    // Supabase'dan qidirish
+    const { data: supabaseResults } = await supabase
+      .from('products')
+      .select('*')
+      .ilike('name', `%${query}%`)
+    
+    if (supabaseResults && supabaseResults.length > 0) {
+      return supabaseResults
+    }
+    
+    // DummyJSON'dan qidirish
     const response = await fetch(`${API_BASE_URL}/products/search?q=${encodeURIComponent(query)}`)
     const data = await response.json()
     
@@ -131,15 +167,10 @@ export const searchProducts = async (query) => {
   }
 }
 
-// Mahsulot qo'shish (localStorage ga saqlaydi)
+// Mahsulot qo'shish (Supabase'ga saqlaydi)
 export const addProduct = async (productData) => {
   try {
-    // Yangi ID yaratish
-    const localProducts = getLocalProducts()
-    const newId = `custom_${Date.now()}`
-    
     const newProduct = {
-      id: newId,
       name: productData.name,
       category: productData.category,
       price: parseFloat(productData.price),
@@ -149,86 +180,60 @@ export const addProduct = async (productData) => {
       thumbnail: productData.image_url || 'https://via.placeholder.com/300x300?text=No+Image',
       rating: 4.5,
       stock: 100,
-      brand: productData.brand || 'Custom',
-      isCustom: true
+      brand: productData.brand || 'TechStore'
     }
     
-    // LocalStorage ga saqlash
-    localProducts.unshift(newProduct)
-    saveLocalProducts(localProducts)
+    const { data, error } = await supabase
+      .from('products')
+      .insert([newProduct])
+      .select()
+      .single()
     
-    return newProduct
+    if (error) throw error
+    
+    return data
   } catch (error) {
     console.error('Mahsulot qo\'shishda xatolik:', error)
     throw error
   }
 }
 
-// Mahsulot o'chirish
+// Mahsulot o'chirish (Supabase'dan)
 export const deleteProduct = async (id) => {
   try {
-    // Agar custom mahsulot bo'lsa - localStorage dan o'chirish
-    if (String(id).startsWith('custom_')) {
-      const localProducts = getLocalProducts()
-      const filtered = localProducts.filter(p => p.id !== id)
-      saveLocalProducts(filtered)
-      return true
-    }
+    const { error } = await supabase
+      .from('products')
+      .delete()
+      .eq('id', id)
     
-    // API mahsulotlari uchun fake delete
-    const response = await fetch(`${API_BASE_URL}/products/${id}`, {
-      method: 'DELETE'
-    })
-    const data = await response.json()
-    return data.isDeleted
+    if (error) throw error
+    
+    return true
   } catch (error) {
     console.error('O\'chirishda xatolik:', error)
     throw error
   }
 }
 
-// Mahsulot yangilash
+// Mahsulot yangilash (Supabase'da)
 export const updateProduct = async (id, productData) => {
   try {
-    // Agar custom mahsulot bo'lsa - localStorage da yangilash
-    if (String(id).startsWith('custom_')) {
-      const localProducts = getLocalProducts()
-      const index = localProducts.findIndex(p => p.id === id)
-      if (index !== -1) {
-        localProducts[index] = {
-          ...localProducts[index],
-          name: productData.name,
-          category: productData.category,
-          price: parseFloat(productData.price),
-          description: productData.description,
-          image_url: productData.image_url || localProducts[index].image_url
-        }
-        saveLocalProducts(localProducts)
-        return localProducts[index]
-      }
-    }
-    
-    // API mahsulotlari uchun fake update
-    const response = await fetch(`${API_BASE_URL}/products/${id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        title: productData.name,
+    const { data, error } = await supabase
+      .from('products')
+      .update({
+        name: productData.name,
         category: productData.category,
-        price: productData.price / 12500,
-        description: productData.description
+        price: parseFloat(productData.price),
+        description: productData.description,
+        image_url: productData.image_url
       })
-    })
-    const data = await response.json()
+      .eq('id', id)
+      .select()
+      .single()
     
-    return {
-      id: data.id,
-      name: data.title,
-      category: data.category,
-      price: Math.round(data.price * 12500),
-      description: data.description,
-      image_url: data.thumbnail
-    }
+    if (error) throw error
+    
+    return data
   } catch (error) {
     console.error('Yangilashda xatolik:', error)
     throw error

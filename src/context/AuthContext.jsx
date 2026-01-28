@@ -1,106 +1,109 @@
 import { createContext, useContext, useState, useEffect } from 'react'
+import { supabase } from '../lib/supabase'
 
 const AuthContext = createContext({})
 
 export const useAuth = () => useContext(AuthContext)
 
-// Demo foydalanuvchilar
-const DEMO_USERS = [
-  { email: 'admin@example.com', password: 'Admin123', role: 'admin', name: 'Admin' },
-  { email: 'user@example.com', password: 'User123', role: 'user', name: 'User' }
-]
-
-// LocalStorage'dan foydalanuvchilarni olish
-const getStoredUsers = () => {
-  const stored = localStorage.getItem('registered_users')
-  return stored ? JSON.parse(stored) : []
-}
-
-// Foydalanuvchilarni saqlash
-const saveStoredUsers = (users) => {
-  localStorage.setItem('registered_users', JSON.stringify(users))
-}
+// Admin emaillar ro'yxati (Supabase'da role qo'shish mumkin)
+const ADMIN_EMAILS = ['admin@example.com', 'admin@techstore.uz']
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    // LocalStorage'dan foydalanuvchini yuklash
-    const savedUser = localStorage.getItem('user')
-    if (savedUser) {
+    // Supabase session tekshirish
+    const getSession = async () => {
       try {
-        setUser(JSON.parse(savedUser))
+        const { data: { session } } = await supabase.auth.getSession()
+        if (session?.user) {
+          const userData = {
+            id: session.user.id,
+            email: session.user.email,
+            name: session.user.user_metadata?.name || session.user.email?.split('@')[0],
+            role: ADMIN_EMAILS.includes(session.user.email) ? 'admin' : 'user',
+            isAdmin: ADMIN_EMAILS.includes(session.user.email)
+          }
+          setUser(userData)
+        }
       } catch (error) {
-        console.error('Error loading user:', error)
-        localStorage.removeItem('user')
+        console.error('Session error:', error)
+      } finally {
+        setLoading(false)
       }
     }
-    setLoading(false)
+
+    getSession()
+
+    // Auth state o'zgarishlarini kuzatish
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      async (event, session) => {
+        if (session?.user) {
+          const userData = {
+            id: session.user.id,
+            email: session.user.email,
+            name: session.user.user_metadata?.name || session.user.email?.split('@')[0],
+            role: ADMIN_EMAILS.includes(session.user.email) ? 'admin' : 'user',
+            isAdmin: ADMIN_EMAILS.includes(session.user.email)
+          }
+          setUser(userData)
+        } else {
+          setUser(null)
+        }
+        setLoading(false)
+      }
+    )
+
+    return () => subscription.unsubscribe()
   }, [])
 
   const login = async (email, password) => {
-    // Demo foydalanuvchini tekshirish
-    const foundUser = DEMO_USERS.find(
-      u => u.email === email && u.password === password
-    )
-    
-    if (foundUser) {
-      const userData = { 
-        email: foundUser.email, 
-        role: foundUser.role,
-        name: foundUser.name,
-        isAdmin: foundUser.role === 'admin'
-      }
-      setUser(userData)
-      localStorage.setItem('user', JSON.stringify(userData))
-      return userData
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password
+    })
+
+    if (error) {
+      throw new Error(error.message === 'Invalid login credentials' 
+        ? 'Email yoki parol noto\'g\'ri' 
+        : error.message)
     }
-    
-    // Ro'yxatdan o'tgan foydalanuvchini tekshirish
-    const storedUsers = getStoredUsers()
-    const registeredUser = storedUsers.find(
-      u => u.email === email && u.password === password
-    )
-    
-    if (registeredUser) {
-      const userData = { 
-        email: registeredUser.email, 
-        name: registeredUser.name,
-        role: 'user',
-        isAdmin: false
-      }
-      setUser(userData)
-      localStorage.setItem('user', JSON.stringify(userData))
-      return userData
+
+    const userData = {
+      id: data.user.id,
+      email: data.user.email,
+      name: data.user.user_metadata?.name || data.user.email?.split('@')[0],
+      role: ADMIN_EMAILS.includes(data.user.email) ? 'admin' : 'user',
+      isAdmin: ADMIN_EMAILS.includes(data.user.email)
     }
-    
-    throw new Error('Email yoki parol noto\'g\'ri')
+
+    return userData
   }
 
   const register = async (name, email, password) => {
-    // Email mavjudligini tekshirish
-    const demoExists = DEMO_USERS.find(u => u.email === email)
-    if (demoExists) {
-      return { success: false, error: 'Bu email allaqachon ro\'yxatdan o\'tgan' }
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          name: name
+        }
+      }
+    })
+
+    if (error) {
+      return { success: false, error: error.message }
     }
-    
-    const storedUsers = getStoredUsers()
-    const userExists = storedUsers.find(u => u.email === email)
-    if (userExists) {
-      return { success: false, error: 'Bu email allaqachon ro\'yxatdan o\'tgan' }
+
+    // Email tasdiqlash kerak bo'lsa
+    if (data.user && !data.session) {
+      return { 
+        success: true, 
+        message: 'Ro\'yxatdan o\'tdingiz! Email manzilingizga tasdiqlash xabari yuborildi.' 
+      }
     }
-    
-    // Yangi foydalanuvchi qo'shish
-    const newUser = { name, email, password, role: 'user' }
-    storedUsers.push(newUser)
-    saveStoredUsers(storedUsers)
-    
-    // Avtomatik login
-    const userData = { email, name, role: 'user', isAdmin: false }
-    setUser(userData)
-    localStorage.setItem('user', JSON.stringify(userData))
-    
+
     return { success: true }
   }
 
@@ -108,28 +111,25 @@ export const AuthProvider = ({ children }) => {
     if (!user) {
       return { success: false, error: 'Foydalanuvchi topilmadi' }
     }
-    
-    const updatedUser = { ...user, ...updates }
-    setUser(updatedUser)
-    localStorage.setItem('user', JSON.stringify(updatedUser))
-    
-    // Ro'yxatdan o'tgan foydalanuvchilar ro'yxatini yangilash
-    const storedUsers = getStoredUsers()
-    const userIndex = storedUsers.findIndex(u => u.email === user.email)
-    if (userIndex !== -1) {
-      storedUsers[userIndex] = { ...storedUsers[userIndex], ...updates }
-      saveStoredUsers(storedUsers)
+
+    const { error } = await supabase.auth.updateUser({
+      data: updates
+    })
+
+    if (error) {
+      return { success: false, error: error.message }
     }
-    
+
+    setUser(prev => ({ ...prev, ...updates }))
     return { success: true }
   }
 
   const logout = async () => {
+    await supabase.auth.signOut()
     setUser(null)
-    localStorage.removeItem('user')
   }
 
-  const isAdmin = user?.role === 'admin' || user?.email === 'admin@example.com' || user?.isAdmin
+  const isAdmin = user?.role === 'admin' || ADMIN_EMAILS.includes(user?.email) || user?.isAdmin
 
   return (
     <AuthContext.Provider value={{
