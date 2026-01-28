@@ -19,37 +19,39 @@ Zamonaviy texnologiyalar asosida qurilgan onlayn do'kon veb-sayti.
 
 ## 🛠️ O'rnatish
 
-1. **Loyihani klonlash**
+### 1. Loyihani klonlash
+
 ```bash
 git clone https://github.com/NorimboyevAzizjon/TechStore.git
 cd TechStore
 ```
 
-2. **Paketlarni o'rnatish**
+### 2. Paketlarni o'rnatish
+
 ```bash
 npm install
 ```
 
-3. **Supabase sozlash**
+### 3. Supabase sozlash
 
-   a. [Supabase](https://supabase.com) da yangi proyekt yarating
-   
-   b. SQL Editor'da `supabase-schema.sql` faylini ishga tushiring
-   
-   c. `.env` faylini yarating va sozlang:
-   ```env
-   VITE_SUPABASE_URL=your-supabase-url
-   VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
-   ```
+- [Supabase](https://supabase.com) da yangi proyekt yarating
+- SQL Editor'da database jadvalini yarating
+- `.env` faylini yarating va sozlang:
 
-4. **Loyihani ishga tushirish**
+```env
+VITE_SUPABASE_URL=your-supabase-url
+VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
+```
+
+### 4. Loyihani ishga tushirish
+
 ```bash
 npm run dev
 ```
 
 ## 📁 Loyiha tuzilishi
 
-```
+```text
 src/
 ├── components/     # UI komponentlar
 │   └── ui/        # Shadcn komponentlari
@@ -62,11 +64,13 @@ src/
 ## 🔐 Funksiyalar
 
 ### Foydalanuvchi autentifikatsiyasi
+
 - ✅ Supabase Auth orqali ro'yxatdan o'tish
 - ✅ Email/parol bilan kirish
 - ✅ Protected routes (Admin dashboard)
 
 ### Sahifalar
+
 - ✅ **Homepage** - Barcha mahsulotlar ro'yxati
 - ✅ **Product Page** - Mahsulot batafsil ma'lumoti
 - ✅ **Cart Page** - Savatcha
@@ -74,6 +78,7 @@ src/
 - ✅ **Admin Dashboard** - Mahsulot qo'shish
 
 ### Qo'shimcha
+
 - ✅ Context API bilan savatcha boshqaruvi
 - ✅ localStorage da savatcha saqlanishi
 - ✅ Responsive dizayn
@@ -81,8 +86,7 @@ src/
 
 ## 👤 Admin kirish
 
-Admin dashboard'ga kirish uchun:
-- Email: `admin@example.com` bilan ro'yxatdan o'ting
+Admin dashboard'ga kirish uchun `admin@example.com` bilan ro'yxatdan o'ting.
 
 ## 📝 License
 
